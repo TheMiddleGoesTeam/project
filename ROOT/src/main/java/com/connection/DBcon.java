@@ -16,18 +16,18 @@ public class DBcon {
          try {
             Class.forName(driver);
             con = DriverManager.getConnection(
-                    "jdbc:mariadb://183.111.242.22:3306/themgt",
+                    "jdbc:mariadb://183.111.242.22:3306",
                     "themgt",
                     "Themiddle1");
             
             if( con != null ) {
-                System.out.println("DB Á¢¼Ó ¼º°ø");
+                System.out.println("DB ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ sucess?");
             }
             
         } catch (ClassNotFoundException e) { 
-            System.out.println("µå¶óÀÌ¹ö ·Îµå ½ÇÆÐ");
+            System.out.println("ï¿½ï¿½ï¿½ï¿½Ì¹ï¿½ ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½");
         } catch (SQLException e) {
-            System.out.println("DB Á¢¼Ó ½ÇÆÐ");
+            System.out.println("DB ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
             e.printStackTrace();
         }
     }

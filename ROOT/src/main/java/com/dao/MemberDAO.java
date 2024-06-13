@@ -13,7 +13,7 @@ public class MemberDAO {
 		
 		try {
 			Context initContext = new InitialContext();
-			DataSource ds = (DataSource)initContext.lookup("java:/comp/env/jdbc/myoracle");
+			DataSource ds = (DataSource)initContext.lookup("java:/comp/env");
 			con = ds.getConnection();
 		} catch (Exception e) {
 			System.out.println("Connection 생성 실패");
@@ -187,7 +187,7 @@ public class MemberDAO {
 			if (rs.next()) {
 				vo = new MemberVO();
 				vo.setmNum(rs.getString("num"));
-				vo.setmID(rs.getString("i"));
+				vo.setmID(rs.getString("id"));
 				vo.setmNic(rs.getString("nic"));
 				vo.setmPass(rs.getString("pass"));
 				vo.setmName(rs.getString("name"));
