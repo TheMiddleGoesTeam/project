@@ -6,7 +6,9 @@ public class MemberVO {
 	private String mNic;
 	private String mPass;
 	private String mName;
-	private String mTel;
+	private String mTel1;
+	private String mTel2;
+	private String mTel3;
 	private String mEmail;
 	private int mMileage;
 	private String mCat;
@@ -40,12 +42,28 @@ public class MemberVO {
 	public void setmName(String mName) {
 		this.mName = mName;
 	}
-	public String getmTel() {
-		return mTel;
+	public String getmTel1() {
+		return mTel1;
 	}
-	public void setmTel(String mTel) {
-		this.mTel = mTel;
+	public void setmTel1(String mTel1) {
+		this.mTel1 = mTel1;
 	}
+	
+	
+	public String getmTel2() {
+		return mTel2;
+	}
+	public void setmTel2(String mTel2) {
+		this.mTel2 = mTel2;
+	}
+	public String getmTel3() {
+		return mTel3;
+	}
+	public void setmTel3(String mTe3l) {
+		this.mTel3 = mTel3;
+	}	
+	
+	
 	public String getmEmail() {
 		return mEmail;
 	}
