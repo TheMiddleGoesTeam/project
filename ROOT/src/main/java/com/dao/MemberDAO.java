@@ -13,15 +13,15 @@ public class MemberDAO {
 		
 		try {
 			Context initContext = new InitialContext();
-			DataSource ds = (DataSource)initContext.lookup("java:/comp/env");
+			DataSource ds = (DataSource)initContext.lookup("java:/comp/env/jdbc/myoracle");
 			con = ds.getConnection();
 		} catch (Exception e) {
-			System.out.println("Connection ìƒì„± ì‹¤íŒ¨");
+			System.out.println("Connection »ı¼º ½ÇÆĞ");
 		}
 		return con;
-	} // ë°ì´í„°ë² ì´ìŠ¤ ì—°ê²° ë©”ì†Œë“œ
+	} // µ¥ÀÌÅÍº£ÀÌ½º ¿¬°á ¸Ş¼Òµå
 	
-	// ì•„ì´ë”” ì¤‘ë³µ ì²´í¬ ê¸°ëŠ¥
+	// ¾ÆÀÌµğ Áßº¹ Ã¼Å© ±â´É
 	public boolean idCheck(String id) {
 		
 		boolean result = true;
@@ -80,17 +80,14 @@ public class MemberDAO {
 		
 		try {
 			con = getConnection(); 
-			String sql = "insert into aci_member values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String sql = "insert into aci_member values(?, ?, ?, ?, ?, ?)";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, vo.getmNum());
-			pstmt.setString(2, vo.getmID());
-			pstmt.setString(3, vo.getmNic());
-			pstmt.setString(4, vo.getmPass());
-			pstmt.setString(5, vo.getmName());
-			pstmt.setString(6, vo.getmTel());
-			pstmt.setString(7, vo.getmEmail());
-			pstmt.setInt(8, vo.getmMileage());
-			pstmt.setString(9, vo.getmCat());
+			pstmt.setString(1, vo.getmID());
+			pstmt.setString(2, vo.getmNic());
+			pstmt.setString(3, vo.getmPass());
+			pstmt.setString(4, vo.getmName());
+			pstmt.setString(5, vo.getmTel());
+			pstmt.setString(6, vo.getmEmail());
 			
 			int count = pstmt.executeUpdate();
 			if (count > 0) {
@@ -186,15 +183,12 @@ public class MemberDAO {
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				vo = new MemberVO();
-				vo.setmNum(rs.getString("num"));
 				vo.setmID(rs.getString("id"));
 				vo.setmNic(rs.getString("nic"));
 				vo.setmPass(rs.getString("pass"));
 				vo.setmName(rs.getString("name"));
 				vo.setmTel(rs.getString("tel"));
 				vo.setmEmail(rs.getString("email"));
-				vo.setmMileage(rs.getInt("mileage"));
-				vo.setmCat(rs.getString("cat"));
 			}
 		} catch (SQLException ss) {
 			ss.printStackTrace();
@@ -232,17 +226,14 @@ public class MemberDAO {
 		
 		try {
 			con = getConnection();
-			String sql = "update aci_member set nic = ?, pass = ?, name = ?, tel = ?, email = ?, mileage = ?, cat = ? where id = ?";
+			String sql = "update aci_member set nic = ?, pass = ?, name = ?, tel = ?, email = ?, where id = ?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, vo.getmNum());
-			pstmt.setString(2, vo.getmID());
-			pstmt.setString(3, vo.getmNic());
-			pstmt.setString(4, vo.getmPass());
-			pstmt.setString(5, vo.getmName());
-			pstmt.setString(6, vo.getmTel());
-			pstmt.setString(7, vo.getmEmail());
-			pstmt.setInt(8, vo.getmMileage());
-			pstmt.setString(9, vo.getmCat());
+			pstmt.setString(1, vo.getmID());
+			pstmt.setString(2, vo.getmNic());
+			pstmt.setString(3, vo.getmPass());
+			pstmt.setString(4, vo.getmName());
+			pstmt.setString(5, vo.getmTel());
+			pstmt.setString(6, vo.getmEmail());
 			
 			
 			pstmt.executeUpdate();
@@ -268,14 +259,14 @@ public class MemberDAO {
 		}
 	}
 	
-	// deleteFormì—ì„œ íšŒì›íƒˆí‡´ ë²„íŠ¼ì„ í´ë¦­í•˜ë©´ ì‹¤ì œ ë°ì´í„°ë² ì´ìŠ¤ì—ì„œ íšŒì›ì •ë³´ë¥¼ ì‚­ì œí•˜ëŠ” ê¸°ëŠ¥ êµ¬í˜„
+	// deleteForm¿¡¼­ È¸¿øÅ»Åğ ¹öÆ°À» Å¬¸¯ÇÏ¸é ½ÇÁ¦ µ¥ÀÌÅÍº£ÀÌ½º¿¡¼­ È¸¿øÁ¤º¸¸¦ »èÁ¦ÇÏ´Â ±â´É ±¸Çö
 	
 	public int deleteMember(String id, String pass) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String dbPass = ""; // ë°ì´í„°ë² ì´ìŠ¤ì— ì €ì¥ëœ íŒ¨ìŠ¤ì›Œë“œë¥¼ ì €ì¥í•˜ëŠ” ë³€ìˆ˜
+		String dbPass = ""; // µ¥ÀÌÅÍº£ÀÌ½º¿¡ ÀúÀåµÈ ÆĞ½º¿öµå¸¦ ÀúÀåÇÏ´Â º¯¼ö
 		int result = -1;
 		
 		try {
@@ -288,7 +279,7 @@ public class MemberDAO {
 			
 			if (rs.next()) {
 				dbPass = rs.getString("pass");
-				if (dbPass.equals(pass)) { // ë³¸ì¸ í™•ì¸
+				if (dbPass.equals(pass)) { // º»ÀÎ È®ÀÎ
 					String sql2 = "delete from aci_member where id = ?";
 					pstmt = con.prepareStatement(sql2);
 					pstmt.setString(1, id);
