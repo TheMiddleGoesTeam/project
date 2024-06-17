@@ -1,0 +1,50 @@
+@charset "UTF-8";
+
+/* login */
+
+#login .in {
+	max-width: 580px;
+	width: 70%;
+	margin: 30px auto;
+}
+
+#login .inputs {
+	margin-bottom: 10px;
+}
+
+#login .input {
+	margin: 5px 0;
+}
+
+#login .button {
+	margin: 10px 0;
+	height: 50px;
+	font-size: 1.2rem;
+}
+
+
+/* sign up */
+
+#signup .table {
+	border-top: 2px solid var(--bulma-black);
+	max-width: 700px;
+	margin: 0 auto;
+}
+
+#signup .table th, #signup .table td {
+	padding: 1.5rem 1rem;
+}
+
+#signup .table th {
+	vertical-align: middle;
+	font-size: 1.2rem;
+}
+
+#signup .table .field {
+	justify-content: center;
+}
+
+#signup .table .field .button {
+	width: 200px;
+	font-size: 1.2rem;
+}
