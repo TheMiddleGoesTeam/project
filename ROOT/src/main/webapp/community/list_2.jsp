@@ -115,7 +115,7 @@
 					<a href="#" class="button prev">이전</a>
 					<a href="#" class="button">1</a>
 					<a href="#" class="button">2</a>
-					<a href="#" class="button is-seleted">3</a>
+					<a href="#" class="button is-selected">3</a>
 					<a href="#" class="button">4</a>
 					<a href="#" class="button">5</a>
 					<a href="#" class="button next">다음</a>
