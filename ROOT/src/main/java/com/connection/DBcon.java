@@ -16,12 +16,12 @@ public class DBcon {
          try {
             Class.forName(driver);
             con = DriverManager.getConnection(
-                    "jdbc:mariadb://183.111.242.22:3306",
+                    "jdbc:mariadb://183.111.242.22:3306/themgt",
                     "themgt",
                     "Themiddle1");
             
             if( con != null ) {
-                System.out.println("DB ���� ���� sucess?");
+                System.out.println("DB 연결 성공");
             }
             
         } catch (ClassNotFoundException e) { 

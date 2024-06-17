@@ -1,0 +1,99 @@
+@charset "UTF-8";
+
+/** 공통 **/
+/* all_boards */
+#all_boards .grid {
+	gap: 5rem 10rem!important;
+}
+
+#all_boards .cell {
+	max-width: 592px;
+}
+
+#all_boards .tit {
+	position: relative;
+	width: 100%;
+	border-bottom: 2px solid var(--bulma-black);
+}
+
+#all_boards .tit .button {
+	position: absolute;
+	right: 0;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+#all_boards td {
+	font-size: 1.1rem;
+}
+
+#all_boards .table td a {
+	display: block;
+	width: 100%;
+}
+
+#all_boards .table td a:hover div {
+	text-decoration: underline;
+}
+
+#all_boards .table td a div {
+	color: var(--bulma-text);
+	float: left;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	word-break: break-all;
+	width: calc(100% - 60px);
+	max-width: 480px;
+	box-sizing: border-box;
+}
+
+#all_boards .table td a span {
+	float: right;
+	color: var(--bulma-grey-light);
+	font-size: 0.9rem;
+	width: 60px;
+	text-align: center;
+}
+
+#all_boards .is-fullwidth:not(.table) {
+	width: 100%;
+}
+
+#all_boards .is-fullwidth:not(.table) td {
+	padding: 1em 0.75em;
+	color: var(--bulma-grey);
+}
+
+
+/* list */
+.community.list table {
+	border-top: 2px solid var(--bulma-black);
+}
+
+.community.list table .none {
+	text-align: center;
+	padding: 2rem;
+	color: var(--bulma-grey);
+	font-size: 1.1rem;
+}
+
+.community.list table tbody tr {
+	transition: all var(--bulma-duration);
+}
+
+.community.list table tbody tr:hover {
+	background: #f1f3f5;
+}
+
+.community.list table a {
+	color: var(--bulma-text);
+}
+
+.community.list table a:hover {
+	text-decoration: underline;
+}
+
+.community.list table a:visited {
+	/* color: var(--bulma-grey); */
+}

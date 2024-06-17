@@ -8,7 +8,7 @@
   </context-param>
   <context-param>
 	  <param-name>URL</param-name>
-	  <param-value>jdbc:mariadb://183.111.242.22:3306</param-value> <!-- 접속할 URL : mariadb의 포트번호 3306 -->
+	  <param-value>jdbc:mariadb://183.111.242.22:3306/maria</param-value> <!-- 접속할 URL : mariadb의 포트번호 3306 -->
   </context-param>
   <context-param>
       <param-name>dbId</param-name>      <!-- 연결할 DB의 아이디 정보 -->

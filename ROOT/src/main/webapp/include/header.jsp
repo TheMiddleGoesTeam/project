@@ -14,7 +14,7 @@
 						<a href="<%=request.getContextPath() %>/page/about.jsp"><p>about</p><span class="on">about</span><span class="off">about</span></a>
 						<a href="<%=request.getContextPath() %>/page/brand.jsp"><p>brand</p><span class="on">brand</span><span class="off">brand</span></a>
 						<a href="javascript: alert('준비중인 페이지입니다!');"><p>product</p><span class="on">product</span><span class="off">product</span></a>
-						<a href="javascript: alert('준비중인 페이지입니다!');"><p>community</p><span class="on">community</span><span class="off">community</span></a>
+						<a href="<%=request.getContextPath() %>/community/all_boards.jsp"><p>community</p><span class="on">community</span><span class="off">community</span></a>
 					</div>
 					<div class="field has-addons has-addons-right">
 						<p class="control">

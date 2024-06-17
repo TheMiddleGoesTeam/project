@@ -3,7 +3,6 @@
 	<name>ROOT</name>
 	<comment></comment>
 	<projects>
-		<project>mariadb-java-client-2.7.4</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

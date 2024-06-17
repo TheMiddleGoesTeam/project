@@ -2,9 +2,6 @@
     <wb-module deploy-name="ROOT">
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
-        <dependent-module archiveName="mariadb-java-client-2.7.4.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/mariadb-java-client-2.7.4/mariadb-java-client-2.7.4">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
         <property name="context-root" value="ROOT"/>
         <property name="java-output-path" value="/ROOT/build/classes"/>
     </wb-module>

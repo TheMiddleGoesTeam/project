@@ -16,12 +16,12 @@ public class MemberDAO {
 			DataSource ds = (DataSource)initContext.lookup("java:/comp/env/jdbc/myoracle");
 			con = ds.getConnection();
 		} catch (Exception e) {
-			System.out.println("Connection »ý¼º ½ÇÆÐ");
+			System.out.println("Connection ìƒì„± ì‹¤íŒ¨");
 		}
 		return con;
-	} // µ¥ÀÌÅÍº£ÀÌ½º ¿¬°á ¸Þ¼Òµå
+	} // ë°ì´í„°ë² ì´ìŠ¤ ì—°ê²° ë©”ì†Œë“œ
 	
-	// ¾ÆÀÌµð Áßº¹ Ã¼Å© ±â´É
+	// ì•„ì´ë”” ì¤‘ë³µ ì²´í¬ ê¸°ëŠ¥
 	public boolean idCheck(String id) {
 		
 		boolean result = true;
@@ -80,14 +80,21 @@ public class MemberDAO {
 		
 		try {
 			con = getConnection(); 
-			String sql = "insert into aci_member values(?, ?, ?, ?, ?, ?)";
+			String sql = 
+				"insert into aci_member(mnum,mid,mnic,mpass,mname,mtel1,mtel2,mtel3,memail,) "
+				+ "values((select nvl(max(mnum),0)+1 from board), ?, ?, ?, ?, ?, ?,?,?)";
 			pstmt = con.prepareStatement(sql);
+
 			pstmt.setString(1, vo.getmID());
 			pstmt.setString(2, vo.getmNic());
 			pstmt.setString(3, vo.getmPass());
 			pstmt.setString(4, vo.getmName());
-			pstmt.setString(5, vo.getmTel());
-			pstmt.setString(6, vo.getmEmail());
+			pstmt.setString(5, vo.getmTel1());
+			pstmt.setString(6, vo.getmTel2());
+			pstmt.setString(7, vo.getmTel3());
+			pstmt.setString(8, vo.getmEmail());
+			
+		
 			
 			int count = pstmt.executeUpdate();
 			if (count > 0) {
@@ -98,216 +105,12 @@ public class MemberDAO {
 			ss.printStackTrace();
 			
 		} finally {
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException s) {
-					
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException s) {
-					
-				}
-			}
+			if (pstmt != null) {try {pstmt.close();} catch (SQLException s) {}}
+			if (con != null) {try {con.close();} catch (SQLException s) {}}
 		}
 		return flag;
 	}
 	
-	public int loginCheck(String id, String pass) {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		int check = -1;
-		
-		try {
-			con = getConnection();
-			String sql = "select pass from aci_member where id=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
-			
-			if (rs.next()) {
-				String dbPass = rs.getString("pass");
-				if (pass.equals(dbPass)) {
-					check = 1;
-				} else {
-					check = 0;
-				}
-			}
-			
-		} catch (SQLException ss) {
-			ss.printStackTrace();
-			
-		} finally {
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (SQLException s) {
-					
-				}
-			}
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException s) {
-					
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException s) {
-					
-				}
-			}
-		}
-		
-		return check;
-	}
 	
-	public MemberVO getMember(String id) {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		MemberVO vo = null;
-		
-		try {
-			con = getConnection();
-			String sql="select * from aci_member where id=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, id);
-			
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				vo = new MemberVO();
-				vo.setmID(rs.getString("id"));
-				vo.setmNic(rs.getString("nic"));
-				vo.setmPass(rs.getString("pass"));
-				vo.setmName(rs.getString("name"));
-				vo.setmTel(rs.getString("tel"));
-				vo.setmEmail(rs.getString("email"));
-			}
-		} catch (SQLException ss) {
-			ss.printStackTrace();
-			
-		} finally {
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (SQLException s) {
-					
-				}
-			}
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException s) {
-					
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException s) {
-					
-				}
-			}
-		}
-		
-		return vo;
-	}
 	
-	public void updateMember(MemberVO vo) {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		
-		try {
-			con = getConnection();
-			String sql = "update aci_member set nic = ?, pass = ?, name = ?, tel = ?, email = ?, where id = ?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, vo.getmID());
-			pstmt.setString(2, vo.getmNic());
-			pstmt.setString(3, vo.getmPass());
-			pstmt.setString(4, vo.getmName());
-			pstmt.setString(5, vo.getmTel());
-			pstmt.setString(6, vo.getmEmail());
-			
-			
-			pstmt.executeUpdate();
-			
-		} catch (SQLException ss) {
-			ss.printStackTrace();
-			
-		} finally {
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException s) {
-					
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException s) {
-					
-				}
-			}
-		}
-	}
-	
-	// deleteForm¿¡¼­ È¸¿øÅ»Åð ¹öÆ°À» Å¬¸¯ÇÏ¸é ½ÇÁ¦ µ¥ÀÌÅÍº£ÀÌ½º¿¡¼­ È¸¿øÁ¤º¸¸¦ »èÁ¦ÇÏ´Â ±â´É ±¸Çö
-	
-	public int deleteMember(String id, String pass) {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		String dbPass = ""; // µ¥ÀÌÅÍº£ÀÌ½º¿¡ ÀúÀåµÈ ÆÐ½º¿öµå¸¦ ÀúÀåÇÏ´Â º¯¼ö
-		int result = -1;
-		
-		try {
-			con = getConnection();
-			String sql1 = "select pass from aci_member where id = ?";
-			pstmt = con.prepareStatement(sql1);
-			pstmt.setString(1, id);
-			
-			rs = pstmt.executeQuery();
-			
-			if (rs.next()) {
-				dbPass = rs.getString("pass");
-				if (dbPass.equals(pass)) { // º»ÀÎ È®ÀÎ
-					String sql2 = "delete from aci_member where id = ?";
-					pstmt = con.prepareStatement(sql2);
-					pstmt.setString(1, id);
-					pstmt.executeUpdate();
-					result = 1;
-				} else {
-					result = 0;
-				}
-			}
-		} catch (SQLException ss) {
-			ss.printStackTrace();
-			
-		} finally {
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException s) {
-					
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException s) {
-					
-				}
-			}
-		}
-		return result;
-	}
 }
