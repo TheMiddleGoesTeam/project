@@ -3,10 +3,7 @@ package com.dao;
 import java.sql.*;
 import java.util.*;
 import javax.sql.*;
-
 import com.connection.DBcon;
-
-import javax.naming.*;
 
 public class TestDAO {
 	
@@ -54,27 +51,9 @@ private static TestDAO instance = null;
 			se.printStackTrace();
 		}finally {
 			
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (SQLException s) {
-					
-				}
-			}
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException s) {
-					
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException s) {
-					
-				}
-			}
+			if (rs != null) {	try {rs.close();} catch (SQLException s) {}}
+			if (pstmt != null) {try {pstmt.close();} catch (SQLException s) {}}
+			if (con != null) {try {con.close();} catch (SQLException s) {}}
 			
 			
 		}
