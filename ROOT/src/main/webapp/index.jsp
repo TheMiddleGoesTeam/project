@@ -27,7 +27,7 @@
 			<div class="inner">
 				<div class="tit left">
 					<h2 class="title is-1">best seller</h2>
-					<p class="title is-3">가장 인기있는 굿즈를 <br>알아보세요~!</p>
+					<p class="title is-3">가장 인기있는 굿즈를 <br>알아보세요</p>
 				</div>
 				<div class="contain">
 					<ul>

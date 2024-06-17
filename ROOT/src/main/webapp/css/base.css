@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 :root {
 	--bulma-text: #2e333d;
 }
@@ -69,18 +71,4 @@ a {
 .titles .map_list .arrow {
 	color: var(--bulma-grey-light);
 	font-size: 13px;
-}
-
-
-/* paging */
-.paging .has-addons .button.is-seleted {
-	color: #fff;
-	border: 1px solid rgb(58, 187, 129);
-	background: var(--bulma-success);
-	position: relative;
-	z-index: 1;
-}
-
-.paging .has-addons .button.is-seleted:hover {
-	background: rgb(58, 187, 129);
 }

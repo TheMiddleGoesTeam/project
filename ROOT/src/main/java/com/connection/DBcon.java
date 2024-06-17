@@ -5,40 +5,88 @@ import java.sql.*;
 import javax.sql.*;
  
 public class DBcon {
-    String driver = "org.mariadb.jdbc.Driver";
-    Connection con;
-    PreparedStatement pstmt;
-    ResultSet rs;
- 
-    private static DataSource ds;
-    
-    public DBcon() {
-         try {
-            Class.forName(driver);
-            con = DriverManager.getConnection(
-                    "jdbc:mariadb://183.111.242.22:3306/themgt",
-                    "themgt",
-                    "Themiddle1");
-            
-            if( con != null ) {
-                System.out.println("DB 연결 성공");
-            }
-            
-        } catch (ClassNotFoundException e) { 
-            System.out.println("����̹� �ε� ����");
-        } catch (SQLException e) {
-            System.out.println("DB ���� ����");
+	
+	private static final String JDBC_DRIVER = "org.mariadb.jdbc.Driver";
+	private static final String DB_URL = "jdbc:mariadb://183.111.242.22:3306/themgt";
+	private static final String USER = "themgt";
+	private static final String PASS = "Themiddle1";
+	
+	public static Connection getConnection() throws SQLException {
+        try {
+            Class.forName(JDBC_DRIVER);
+            return DriverManager.getConnection(DB_URL, USER, PASS);
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
+            throw new SQLException("Failed to load JDBC driver", e);
         }
     }
-    
-    public static void main(String[] args){
-        DBcon dbcon = new DBcon();
-    }
-    
-    public static Connection getConnection() throws SQLException {
-		return ds.getConnection();
+	
+	public static void close(PreparedStatement stmt, Connection conn) {
+		if(stmt != null) {
+			try {
+				if(!stmt.isClosed())
+					stmt.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				stmt=null;
+			}
+		}
+		
+		if(conn !=null) {
+			try {
+				if(!conn.isClosed())
+					conn.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				conn=null;
+			}
+		}
+		
+		
 	}
-    
+
+	public static void close(ResultSet rs, PreparedStatement stmt, Connection conn) {
+		
+		if(rs != null) {
+			try {
+				if(!rs.isClosed())
+					rs.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				rs=null;
+			}
+		}
+		
+			
+		if(stmt != null) {
+			try {
+				if(!stmt.isClosed())
+					stmt.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				stmt=null;
+			}
+		}
+		
+		if(conn !=null) {
+			try {
+				if(!conn.isClosed())
+					conn.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				conn=null;
+			}
+		}
+		
+		
+	}
+	
+	
+
     
 }
