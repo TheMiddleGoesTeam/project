@@ -1,0 +1,51 @@
+@charset "UTF-8";
+
+/** 공통 **/
+/* 메뉴 */
+.mypage .menu {
+	width: 1200px;
+	margin: 0 auto;
+	margin-bottom: 100px;
+	text-align: center;
+}
+
+.mypage .menu ul {
+	display: inline-block;
+}
+
+.mypage .menu li {
+	float: left;
+	margin: 0 15px;
+}
+
+.mypage .menu li a {
+	width: 180px;
+	border-radius: 50px;
+}
+
+
+/* 테이블 */
+
+.mypage .table {
+	border-top: 2px solid var(--bulma-black);
+	max-width: 700px;
+	margin: 0 auto;
+}
+
+.mypage .table th, .mypage .table td {
+	padding: 1.5rem 1rem;
+}
+
+.mypage .table th {
+	vertical-align: middle;
+	font-size: 1.2rem;
+}
+
+.mypage .table .field {
+	justify-content: center;
+}
+
+.mypage .table .field .button {
+	width: 200px;
+	font-size: 1.2rem;
+}
