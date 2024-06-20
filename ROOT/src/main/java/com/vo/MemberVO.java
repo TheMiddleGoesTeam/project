@@ -12,6 +12,7 @@ public class MemberVO {
 	private String mEmail;
 	private int mMileage;
 	private String mCat;
+	
 	public String getmNum() {
 		return mNum;
 	}

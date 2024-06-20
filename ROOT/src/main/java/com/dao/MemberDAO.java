@@ -1,29 +1,23 @@
 package com.dao;
 
 import java.sql.*;
-import java.util.*;
-import javax.sql.*;
-import javax.naming.*;
 import com.vo.MemberVO;
-
-import com.connection.*;
+import com.connection.DBcon;
 
 public class MemberDAO {
 	
 	private Connection con = null;
 	private PreparedStatement pstmt = null;
-	private ResultSet rs = null;
-	
 
 	public boolean memberInsert(MemberVO mvo) {
 	
  		boolean flag = false;
 		
 		try {
-			con = DBcon.getConnection(); 
+			con = DBcon.getConnection();
 			String sql = 
 				"insert into ACI_MEMBER(mid,mnic,mpass,mname,mtel1,mtel2,mtel3,memail) "
-				+ "values(?, ?, ?, ?, ?, ?, ?, ?);";
+				+ "values(?, ?, ?, ?, ?, ?, ?, ?)";
 			pstmt = con.prepareStatement(sql);
 
 			pstmt.setString(1, mvo.getmID());
@@ -48,11 +42,5 @@ public class MemberDAO {
 			DBcon.close(pstmt, con);
 		}
 		return flag;
-	}
-	
-	
-	
-	
-	
-	
+	}	
 }

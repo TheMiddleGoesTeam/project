@@ -2,25 +2,28 @@ package com.connection;
 
 import java.sql.*;
 
-import javax.sql.*;
- 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 public class DBcon {
+	private static DataSource ds;
 	
-	private static final String JDBC_DRIVER = "org.mariadb.jdbc.Driver";
-	private static final String DB_URL = "jdbc:mariadb://183.111.242.22:3306/themgt";
-	private static final String USER = "themgt";
-	private static final String PASS = "Themiddle1";
+	static {
+		try {
+			Context initContext = new InitialContext();
+			ds = (DataSource)initContext.lookup("java:/comp/env/jdbc/themgt");
+		} catch(NamingException ne) {
+			ne.printStackTrace();
+		}
+	}
 	
 	public static Connection getConnection() throws SQLException {
-        try {
-            Class.forName(JDBC_DRIVER);
-            return DriverManager.getConnection(DB_URL, USER, PASS);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            throw new SQLException("Failed to load JDBC driver", e);
-        }
-    }
+		return ds.getConnection();
+	}
 	
+
 	public static void close(PreparedStatement stmt, Connection conn) {
 		if(stmt != null) {
 			try {
@@ -82,11 +85,7 @@ public class DBcon {
 				conn=null;
 			}
 		}
-		
-		
-	}
-	
-	
 
+	}
     
 }

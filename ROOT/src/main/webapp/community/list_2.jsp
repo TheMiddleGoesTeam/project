@@ -18,7 +18,7 @@
 	</section>
 	<section class="section community list">
 		<div class="container">
-			<table class="table is-fullwidth">
+			<table class="table is-fullwidth is-hoverable">
 				<colgroup>
 					<col width="100">
 					<col width="">

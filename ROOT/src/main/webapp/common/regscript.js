@@ -54,7 +54,7 @@ function inputCheck(){
 
 
 	if(document.signup.mtel1.value==""){
-		alert("통신사를  확인해 주세요");
+		alert("통신사를 확인해 주세요");
 		document.signup.mtel1.focus();
 		return;
 	}
