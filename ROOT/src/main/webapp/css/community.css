@@ -78,6 +78,7 @@
 	font-size: 1.1rem;
 }
 
+<<<<<<< HEAD
 .community.list table a {
 	color: var(--bulma-text);
 }
@@ -107,4 +108,24 @@
 
 .community.write table th {
 	vertical-align: middle;
+=======
+.community.list table tbody tr {
+	transition: all var(--bulma-duration);
+}
+
+.community.list table tbody tr:hover {
+	background: #f1f3f5;
+}
+
+.community.list table a {
+	color: var(--bulma-text);
+}
+
+.community.list table a:hover {
+	text-decoration: underline;
+}
+
+.community.list table a:visited {
+	/* color: var(--bulma-grey); */
+>>>>>>> refs/remotes/origin/main
 }

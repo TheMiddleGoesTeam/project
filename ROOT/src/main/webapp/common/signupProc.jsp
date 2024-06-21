@@ -18,7 +18,11 @@
 					out.println("<a href='login.jsp' class='button is-link'>로그인</a>");
 				} else {
 					out.println("<p><b>다시 작성하세요.</b></p><br>");
+<<<<<<< HEAD
 					out.println("<a href='signup.jsp' class='button'>다시작성</a>");
+=======
+					out.println("<a href='regForm.jsp' class='button'>다시작성</a>");
+>>>>>>> refs/remotes/origin/main
 				}
 			%>
 		</div>

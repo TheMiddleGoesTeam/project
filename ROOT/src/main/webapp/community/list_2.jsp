@@ -18,7 +18,11 @@
 	</section>
 	<section class="section community list">
 		<div class="container">
+<<<<<<< HEAD
 			<table class="table is-fullwidth is-hoverable">
+=======
+			<table class="table is-fullwidth">
+>>>>>>> refs/remotes/origin/main
 				<colgroup>
 					<col width="100">
 					<col width="">

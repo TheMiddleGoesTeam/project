@@ -59,9 +59,15 @@
 					<tr>
 						<th>전화번호</th>
 						<td>
+<<<<<<< HEAD
 							<input type="text" name="mtel1" size="4" value="" class="input is-inline">
 							<input type="text" name="mtel2" size="5" value="" class="input is-inline">
 							<input type="text" name="mtel3" size="5" value="" class="input is-inline">
+=======
+							<input type="text" name="mtel1" size="4" value="<%= vo.getmTel1() %>" class="input is-inline">
+							<input type="text" name="mtel2" size="5" value="<%= vo.getmTel2() %>" class="input is-inline">
+							<input type="text" name="mtel3" size="5" value="<%= vo.getmTel3() %>" class="input is-inline">
+>>>>>>> refs/remotes/origin/main
 						</td>
 					</tr>
 					<tr>
