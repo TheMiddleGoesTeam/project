@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+#admin .menu {
+	margin-bottom: 100px;
+}
+
+#admin.member .table {
+	width: 840px;
+	margin: 0 auto;
+}
+
+
+/* member_info */
+
+#admin.info .table a {
+	color: var(--bulma-black);
+}
+
+#admin.info .table a:hover {
+	text-decoration: underline;
+} 

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Context>
+    <WatchedResource>WEB-INF/web.xml</WatchedResource>
+    <WatchedResource>${catalina.base}/conf/web.xml</WatchedResource>
+    <Resource 
+      name="jdbc/themgt"
+      auth="Container"
+      type="javax.sql.DataSource"
+      driverClassName="org.mariadb.jdbc.Driver"
+       url="jdbc:mariadb://183.111.242.22:3306/themgt"
+       username="themgt"
+       password="Themiddle1"
+    />
+</Context>

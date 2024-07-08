@@ -1,0 +1,120 @@
+@charset "UTF-8";
+
+.product .menu .sub_category .button {
+	min-width: 116px;
+	margin-bottom: 5px;
+}
+
+
+/* details */
+
+.details .con {
+	width: 100%;
+	overflow: hidden;
+}
+
+.details .con .img {
+	width: 400px;
+	margin-right: 80px;
+	float: left;
+}
+
+.details .con .img .big {
+	width: 400px;
+	height: 400px;
+	border-radius: 20px;
+	overflow: hidden;
+	position: relative;
+}
+
+.details .con .img .big img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.details .con .img .small {
+	margin-top: 30px;
+	width: 400px;
+	display: block;
+}
+
+.details .con .img .small li {
+	width: 90px;
+	height: 90px;
+	border-radius: 10px;
+	float: left;
+	overflow: hidden;
+	position: relative;
+	margin-right: 13px;
+	cursor: pointer;
+}
+
+.details .con .img .small li:last-child {
+	margin-right: 0;
+}
+
+.details .con .img .small li img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.details .con .txt {
+	float: right;
+	width: calc(100% - 480px);
+	min-height: 400px;
+	position: relative;
+	color: var(--bulma-text);
+	box-sizing: border-box;
+	padding-bottom: 150px;
+}
+
+.details .con .txt .name {
+	font-size: 1.2rem;
+	font-weight: 700;
+}
+
+.details .con .txt .sub_name {
+	font-size: 0.9rem;
+}
+
+.details .con .txt p {
+	margin-top: 50px;
+	width: 100%;
+}
+
+.details .con .txt .btns {
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
+.details .con .txt .btns a {
+	line-height: 1;
+	font-size: 1.05rem;
+	color: inherit;
+	float: left;
+	margin-right: 5px;
+}
+
+.details .con .txt .btns a:last-child {
+	margin-right: 0;
+}
+
+.details .con .txt .btns a:hover {
+	color: rgb(72, 199, 142);
+}
+
+.details .con .txt .btns .buttons {
+	margin-top: 20px;
+}
+
+.details .con .txt .btns .buttons button {
+	min-width: 140px;
+}
+
+.details .con .txt .btns .buttons button:hover {
+	background: rgb(72, 199, 142);
+}

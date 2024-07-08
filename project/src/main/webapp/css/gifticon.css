@@ -1,0 +1,73 @@
+@charset "UTF-8";
+
+.gifticon .menu .sub_category .button {
+	min-width: 116px;
+	margin-bottom: 5px;
+}
+
+
+.gifticon .goods .price {
+	color: hsl(171, 100%, 29%);
+	font-weight: 700;
+	font-size: 1.1rem;
+}
+
+.gifticon .goods .buttons {
+	margin-top: 50px;
+}
+
+.gifticon .goods .buttons a:hover {
+	background: rgb(72, 199, 142);
+	color: #fff;
+}
+
+.table td {
+	vertical-align: middle;
+}
+
+.table .img img {
+	width: 100px;
+}
+
+.table .price {
+	font-weight: 700;
+	color: hsl(171, 100%, 29%);
+}
+
+
+/* buy */
+
+.buy {
+	overflow: hidden;
+}
+
+.buy .list .table td {
+	line-height: 0;
+}
+
+.buy .list .table tbody tr:last-child td, .buy .list .table tbody tr:last-child th {
+	border-bottom-width: 1px;
+}
+
+.buy .total {
+	margin-top: 100px;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.buy .total .pp {
+	width: 50%;
+	font-size: 1.05rem;
+}
+
+.buy .total .tt {
+	margin-top: 30px;
+	width: 50%;
+	font-size: 1.2rem;
+	/* color: rgb(72, 199, 142); */
+	font-weight: 700;
+}
+
+.buy .total .button {
+	margin-top: 30px;
+}
