@@ -9,7 +9,6 @@ import com.vo.BoardVO;
 
 public class BoardDAO {
 	private static BoardDAO instance = null;
-	private BoardDAO(){	}
 	
 	public static BoardDAO getInstance() {
 		if(instance==null) {
@@ -30,7 +29,7 @@ public class BoardDAO {
 		int step= vo.getbStep();
 		int depth = vo.getbDepth();
 		int number=0;
-		String sql1="select max(bnum) from ACI_BOARD";
+		String sql1="select max(bNum) from ACI_BOARD";
 		String sql2="update ACI_BOARD set bStep=bStep+1 where bRef=? and bStep > ?";
 		try {
 			conn = DBcon.getConnection();
@@ -39,7 +38,7 @@ public class BoardDAO {
 			
 		
 			
-			if(rs.next()) { number = rs.getInt(1)+1;}
+			if(rs.next()) number = rs.getInt(1)+1;
 			else number =1;
 			
 			if(num != 0) {//답변글 일 경우
@@ -55,9 +54,9 @@ public class BoardDAO {
 				step = 0;
 				depth=0;
 			}
-			String sql3="insert into ACI_BOARD(bTitle, bWriter, bPass,bref,bstep,bdepth, bContents) "
+			String sql3="insert into ACI_BOARD(bTitle, bWriter, bPass, bRef, bStep, bDepth, bContents)"
 					+ "values(?,?,?,?,?,?,?)";
-			//바인딩 11개, 카테고리도 따로 입력 가능하게 할 것인지? 
+
 			pstmt=conn.prepareStatement(sql3);
 			
 			
@@ -68,10 +67,7 @@ public class BoardDAO {
 			pstmt.setInt(5, step);
 			pstmt.setInt(6, depth);
 			pstmt.setString(7,vo.getbContents());
-			//pstmt.setString(11, vo.getbProcuct());
-			
-	
-			pstmt.executeUpdate();
+
 			
 		}catch (SQLException s) {
 			s.printStackTrace();
@@ -122,12 +118,13 @@ public class BoardDAO {
 		
 		try {
 			conn= DBcon.getConnection();
-			pstmt=conn.prepareStatement("select * from ACI_BOARD order by bNum desc LIMIT ?, 5");
+			String sql="select * from (select rownum rnum, bNum, bTitle, bWriter, bPass, bCat, bDate, bReadcount, bRef, bStep, bDepth, bContents "
+					+ "from (select * from ACI_BOARD order by bRef desc, step asc)) where rnum >=? and rnum <= ?";
+			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, start);
-	       // pstmt.setInt(2, end);
-			
-	        
+			pstmt.setInt(2, end);
 			rs=pstmt.executeQuery();
+
 			if(rs.next()) {
 				articleList = new ArrayList<BoardVO>();
 				do {
@@ -136,6 +133,7 @@ public class BoardDAO {
 					vo.setbTitle(rs.getString("bTitle"));
 					vo.setbWriter(rs.getString("bWriter"));
 					vo.setbPass(rs.getString("bPass"));
+					vo.setbCat(rs.getString("bCat"));
 					vo.setbDate(rs.getTimestamp("bDate"));
 					vo.setbReadCount(rs.getInt("bReadcount"));
 					vo.setbRef(rs.getInt("bRef"));
@@ -261,7 +259,7 @@ public class BoardDAO {
 			   if(rs.next()) {
 				   dbpasswd=rs.getString("bPass");
 				   if(dbpasswd.equals(vo.getbPass())) {
-					   sql2="update ACI_BOARD set bWriter=?, bTitle=?, bContents=? where bNum=? ";
+					   sql2="update ACI_BOARD set bWriter=?, bTitle=?, bContents =? where bNum=? ";
 					   pstmt= con.prepareStatement(sql2);
 					   
 					   pstmt.setString(1,vo.getbWriter());
@@ -322,8 +320,8 @@ public class BoardDAO {
 	   }//end deleteArticle
 	 
  
- //검색한 내용이 몇개 있는지 반환(content: 검색내용)
-  public int getArticleCount(String content) {
+	//검색한 내용이 몇개 있는지 반환(what:검색조건, content: 검색내용)
+	public int getArticleCount(String what, String content) {
 		Connection con = null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -332,7 +330,7 @@ public class BoardDAO {
 		try {
 			con= DBcon.getConnection();
 			//String sql="select count(*) from board";
-			String sql="select count(*) from ACI_BOARD where "+content+"%'";
+			String sql="select count(*) from ACI_BOARD where "+what+" like '%"+content+"%'";
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
@@ -353,53 +351,54 @@ public class BoardDAO {
 	* 검색한 내용을 리스트로 받아옴(조건,내용,시작번호,끝번호)
 	*/
   
-  public List<BoardVO> getArticles(String content,int start,int end){
-	Connection con = null;
-	PreparedStatement pstmt=null;
-	ResultSet rs=null;
-	
-	List<BoardVO> articleList=null;
-	
-	try {
-		con= DBcon.getConnection();
-
-		String sql="select * from (select rownum rnum, bNum, bWriter, bTitle , bPass, bDate, bReadcount, bRef, bStep, bDepth, bContents "
-				+ "from (select * from ACI_BOARD where "+content+"%' order by bRef desc, step asc)) where rnum >=? and rnum <= ?";
-		pstmt=con.prepareStatement(sql);
-		pstmt.setInt(1, start);
-		pstmt.setInt(2, end);
-		rs=pstmt.executeQuery();
-		if(rs.next()) {
-			articleList = new ArrayList<BoardVO>(5);
-			do {
-				BoardVO article = new BoardVO();
-				article.setbNum(rs.getInt("bNum"));
-				article.setbWriter(rs.getString("bWriter"));
-				article.setbTitle(rs.getString("bTitle"));
-				article.setbPass(rs.getString("bPass"));
-				article.setbDate(rs.getTimestamp("bDate"));
-				article.setbReadCount(rs.getInt("bReadcount"));
-				article.setbRef(rs.getInt("bRef"));
-				article.setbStep(rs.getInt("bStep"));
-				article.setbDepth(rs.getInt("bDepth"));
-				article.setbContents(rs.getString("bContents"));
-				
-				articleList.add(article);
-			}while(rs.next());
-		}
+	public List<BoardVO> getArticles(String what, String content,int start,int end){
+		Connection con = null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
 		
-	}catch (SQLException s) {
-		s.printStackTrace();
-	}finally{
-		if(rs != null)try{rs.close();}catch(SQLException s){s.printStackTrace();}
-		if(pstmt != null)try{pstmt.close();}catch(SQLException s){s.printStackTrace();}
-		if(con != null)try{con.close();}catch(SQLException s){s.printStackTrace();}
-	}
-	return articleList;
-}//end getArticles
+		List<BoardVO> articleList=null;
+		
+		try {
+			con= DBcon.getConnection();
+	
+			String sql="select * from (select rownum rnum, bNum, bWriter, bTitle , bPass, bDate, bReadcount, bRef, bStep, bDepth, bContents "
+					+ "from (select * from ACI_BOARD where "
+					+what+" like '%"+content+"%' order by bRef desc, step asc)) where rnum >=? and rnum <= ?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				articleList = new ArrayList<BoardVO>(5);
+				do {
+					BoardVO article = new BoardVO();
+					article.setbNum(rs.getInt("bNum"));
+					article.setbWriter(rs.getString("bWriter"));
+					article.setbTitle(rs.getString("bTitle"));
+					article.setbPass(rs.getString("bPass"));
+					article.setbDate(rs.getTimestamp("bDate"));
+					article.setbReadCount(rs.getInt("bReadcount"));
+					article.setbRef(rs.getInt("bRef"));
+					article.setbStep(rs.getInt("bStep"));
+					article.setbDepth(rs.getInt("bDepth"));
+					article.setbContents(rs.getString("bContents"));
+					
+					articleList.add(article);
+				}while(rs.next());
+			}
+			
+		}catch (SQLException s) {
+			s.printStackTrace();
+		}finally{
+			if(rs != null)try{rs.close();}catch(SQLException s){s.printStackTrace();}
+			if(pstmt != null)try{pstmt.close();}catch(SQLException s){s.printStackTrace();}
+			if(con != null)try{con.close();}catch(SQLException s){s.printStackTrace();}
+		}
+		return articleList;
+	}//end getArticles
   
   
-  public List<BoardVO> getAllBoardList(){//all_board에 3개 넣는 메소드
+	public List<BoardVO> getAllBoardList(){//all_board에 3개 넣는 메소드
 		Connection conn = null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -426,11 +425,14 @@ public class BoardDAO {
 				}while(rs.next());
 			}
 			
-		}catch (SQLException s) {
+		 }catch (SQLException s) {
 			s.printStackTrace();
-		}finally{
-			DBcon.close(rs, pstmt, conn);
-		}
+		 }finally{
+	    	//conn.close(rs, pstmt, conn);
+					if(rs != null)try{rs.close();}catch(SQLException s){s.printStackTrace();}
+					if(pstmt != null)try{pstmt.close();}catch(SQLException s){s.printStackTrace();}
+					if(conn != null)try{conn.close();}catch(SQLException s){s.printStackTrace();}
+		 }
 		return allboardList;
 	}//end 
 }

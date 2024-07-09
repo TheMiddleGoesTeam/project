@@ -12,6 +12,8 @@
 <%
     String pageNum = request.getParameter("pageNum");
 
+    // 무엇을 검색할 지 파라미터를 가져와야함(작성자, 제목, 내용)
+    String searchWhat = request.getParameter("searchWhat");
     // 검색 내용
     String searchText = request.getParameter("searchText");
 
@@ -33,7 +35,7 @@
     List<BoardVO> articleList = null;
     BoardDAO dbPro = BoardDAO.getInstance();
 
-    if (searchText == null || searchText.isEmpty()) { // 검색이 아닐 경우
+    if (searchText == null) { // 검색이 아닐 경우
         count = dbPro.getArticleCount(); // 전체글의 목록 수
 
         if (count > 0) {
@@ -41,17 +43,12 @@
         }
 
     } else { // 검색인 경우
-    	count = dbPro.getArticleCount(searchText);
+    	count = dbPro.getArticleCount(searchWhat, searchText);
 
         if (count > 0) {
             // 검색 목록이 하나라도 존재한다면 리스트 출력
-            articleList = dbPro.getArticles(searchText, startRow, endRow);
+            articleList = dbPro.getArticles(searchWhat, searchText, startRow, endRow);
         }
-    }
-
-    if (count > 0) {
-        // articleList = dbPro.getArticles();
-        articleList = dbPro.getArticles(startRow, endRow);
     }
 
     // number = count; number = count;
@@ -92,6 +89,7 @@
                         </tr>
                     </thead>
                 <%
+                	System.out.println(articleList);
                     if (count == 0) { // 글이 없을 경우
                 %>
 
@@ -100,14 +98,13 @@
                     </tr>
                 </table>
 
-                <%
-                    } // 글이 없을 경우
-                        else { // 글이 있을 경우
-                    for (int i = 0; i < articleList.size(); i++) {
-                        BoardVO article = (BoardVO) articleList.get(i);
+                <% // 글이 없을 경우
+                    } else { // 글이 있을 경우
+                    	for (int i = 0; i < articleList.size(); i++) {
+                    		BoardVO article = (BoardVO) articleList.get(i);
                 %>
                     <tr>
-                        <td><%=article.getbNum()%></td>
+                        <td><%=number-- %></td>
                         <td><a href="content.jsp?num=<%=article.getbNum()%>&pageNum=<%=currentPage%>">
                         <%=article.getbTitle() %></a></td>
                         <td><%=article.getbWriter()%></td>
@@ -205,6 +202,13 @@
                 <!-- 검색창 -->
                 <form action="list.jsp">
                     <div class="field has-addons has-addons-centered search">
+                    <span class="select">
+                        <select name="searchWhat">
+                            <option value="bWriter">작성자</option>    
+                            <option value="bTitle">제목</option>  
+                            <option value="bContents">내용</option>                          
+                        </select>
+                     </span>
                         <p class="control">
                             <input class="input" type="text" name="searchText" placeholder="검색어를 입력하세요">
                         </p>

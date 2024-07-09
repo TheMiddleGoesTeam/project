@@ -73,6 +73,7 @@ String pageNum = request.getParameter("pageNum");
 						</tr>
 					</thead>
 				<%
+					System.out.println(articleList);
 					if(count==0){//글이 없을 경우
 				%>
 
