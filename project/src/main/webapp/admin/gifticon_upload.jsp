@@ -15,7 +15,7 @@
 			</div>
 		</div>
 	</section>
-	<section id="admin" class="section">
+	<section id="admin" class="section upload">
 		<div class="container">
 			<div class="menu">
 				<div class="grid">
@@ -26,30 +26,43 @@
 				</div>
 			</div>
 			
-			<form action="gifticon_uploadProc.jsp" method="post" class="is-fullwidth"
-				name="gifticonupdate">
-			
-			<div class="inner">
-				<div class="grid">
-					<div class="cell txt">
-						기프티콘 코드 <input type="text" name="giftCode"  class="input" >
-						기프티콘 이름<input type="text" name="giftName"  class="input" >
-						기프티콘 브랜드<input type="text" name="giftBrand"  class="input" >
-						기프티콘 카테고리<input type="text" name="giftCat"  class="input" >
-						기프티콘 가격<input type="number" name="giftPrice"  class="input" >
-						기프티콘 설명<input type="text" name="giftComment"  class="input" >
-						기프티콘 이미지<input type="text" name="giftImage"  class="input" >
-						<input type="submit" value="입력" class="button is-success has-text-white">
+			<form action="gifticon_uploadProc.jsp" method="post" class="is-fullwidth" name="gifticonupdate">
+
+				<div class="inner">
+					<div class="columns is-3">
+						<div class="column txt is-two-thirds">
+							<div class="file file-with-js mb-2">
+								<label class="file-label">
+									<input class="file-input" type="file" name="giftImage" />
+									<span class="file-cta">
+										<span class="file-icon">
+											<i class="fas fa-upload"></i>
+										</span>
+										<span class="file-label">파일 선택</span>
+									</span>
+									<span class="file-name">이미지가 없습니다.</span>
+								</label>
+							</div>
+							<input type="text" name="giftCode" class="input mb-2" placeholder="기프티콘 코드">
+							<input type="text" name="giftName" class="input mb-2" placeholder="기프티콘 이름">
+							<input type="text" name="giftBrand" class="input mb-2" placeholder="기프티콘 브랜드">
+							<input type="text" name="giftCat" class="input mb-2" placeholder="기프티콘 카테고리">
+							<input type="number" name="giftPrice" class="input mb-2" placeholder="기프티콘 가격">
+							<input type="text" name="giftComment" class="input" placeholder="기프티콘 설명">
+							<button type="submit" class="button is-link is-fullwidth is-medium mt-3">확인</button>
+						</div>
+						<div class="column img">
+							<!-- Image preview -->
+							<div class="field">
+								<img id="thumbnail" src="<%=request.getContextPath() %>/img/default.png" alt="image-preview-here" />
+							</div>
+						</div>
 					</div>
-					<div class="cell img"></div>
 				</div>
-			</div>
-	</form>
-
+			</form>
 		</div>
-
-		
 	</section>
+	<script type="text/javascript" src="<%=request.getContextPath() %>/js/fileUpload.js"></script>
 	<%@ include file="/include/footer.jsp" %>
 </body>
 </html>

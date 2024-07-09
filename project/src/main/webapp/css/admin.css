@@ -18,4 +18,33 @@
 
 #admin.info .table a:hover {
 	text-decoration: underline;
-} 
+}
+
+
+#admin.upload .columns {
+	gap: 2em;
+	width: 740px;
+	margin: 0 auto;
+}
+
+#admin.upload .file-label {
+	width: 100%;
+}
+
+#admin.upload .file-cta {
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+	padding: 1em 3em;
+}
+
+#admin.upload .file-name {
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+	max-width: 100%;
+	width: 100%;
+}
+
+#admin.upload .box.img {
+	width: 200px;
+	height: 200px;
+}

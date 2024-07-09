@@ -15,7 +15,7 @@
 			</div>
 		</div>
 	</section>
-	<section id="admin" class="section">
+	<section id="admin" class="section upload">
 		<div class="container">
 			<div class="menu">
 				<div class="grid">
@@ -26,27 +26,35 @@
 				</div>
 			</div>
 			<div class="inner">
-				<div class="grid">
-					<div class="cell txt">
-						<div class="file">
+				<div class="columns is-3">
+					<div class="column txt is-two-thirds">
+						<div class="file file-with-js">
 							<label class="file-label">
-								<input class="file-input" type="file" name="resume" />
+								<input class="file-input" type="file" name="selected-image" />
 								<span class="file-cta">
 									<span class="file-icon">
 										<i class="fas fa-upload"></i>
 									</span>
-									<span class="file-label"> Choose a file… </span>
+									<span class="file-label">파일 선택</span>
 								</span>
+								<span class="file-name">이미지가 없습니다.</span>
 							</label>
 						</div>
-						<input type="text" name="brandName" value="" class="input" placeholder="브랜드명">
+						<input type="text" name="brandName" value="" class="input mb-2" placeholder="브랜드명">
 						<input type="text" name="brandSite" value="" class="input" placeholder="브랜드 홈페이지">
+						<button type="button" class="button is-link is-fullwidth is-medium mt-5">확인</button>
 					</div>
-					<div class="cell img"></div>
+					<div class="column img">
+						<!-- Image preview -->
+						<div class="field">
+							<img id="thumbnail" src="<%=request.getContextPath() %>/img/default.png" alt="image-preview-here" />
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</section>
+	<script type="text/javascript" src="<%=request.getContextPath() %>/js/fileUpload.js"></script>
 	<%@ include file="/include/footer.jsp" %>
 </body>
 </html>
