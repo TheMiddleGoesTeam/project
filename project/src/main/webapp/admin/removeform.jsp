@@ -9,10 +9,6 @@
     
     %>
     
-    
-    
-    
-    
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,9 +16,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%=mNum %>번  <%=removeID %>회원님을 삭제하시겠습니까?
-<a href="removeformproxy.jsp?mNum=<%=mNum %>&&mID=<%=removeID%>" >삭제</a>
-<a href="#" >취소</a>
-
+	<section class="section">
+		<div class="container">
+			<div class="inner box" style="width: 500px; text-align: center; margin: 50px auto;">
+				<h4 class="title is-4"><%=mNum %>번 <%=removeID %>회원님을 삭제하시겠습니까?</h4>
+				<div class="buttons is-fullwidth" style="justify-content: center;">
+					<a href="removeformproxy.jsp?mNum=<%=mNum %>&&mID=<%=removeID%>" class="button is-dark is-fullwidth">삭제</a>
+					<a href="#" class="button is-light is-fullwidth">취소</a>
+				</div>
+			</div>
+		</div>
+	</section>
 </body>
 </html>

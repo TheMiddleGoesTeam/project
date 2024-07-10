@@ -1,6 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ include file="/include/document.jsp" %>
+
+<%@ page import="com.dao.ProductDAO" %>
+<%@ page import="com.vo.ProductVO" %>
+
+<%
+	int pcode = Integer.parseInt(request.getParameter("proCode"));
+
+	ProductDAO prPro = ProductDAO.getInstance();
+	ProductVO pro = prPro.getproductCode(pcode);
+
+
+%>
+
+
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/product.css">
 </head>
 <body>
@@ -23,25 +37,23 @@
 				<div class="con">
 					<div class="img">
 						<div class="big">
-							<img src="<%=request.getContextPath() %>/img/starbucks_01.jpg" alt="">
+							<img src="<%=request.getContextPath() %>/img/<%=pro.getpImg() %>" alt="">
 						</div>
 						<ul class="small">
-							<li><img src="<%=request.getContextPath() %>/img/starbucks_01.jpg" alt=""></li>
-							<li><img src="<%=request.getContextPath() %>/img/starbucks_01.jpg" alt=""></li>
-							<li><img src="<%=request.getContextPath() %>/img/starbucks_01.jpg" alt=""></li>
+							<li><img src="<%=request.getContextPath() %>/img/<%=pro.getpImg() %>" alt=""></li>
+							<li><img src="<%=request.getContextPath() %>/img/<%=pro.getpImg() %>" alt=""></li>
+							<li><img src="<%=request.getContextPath() %>/img/<%=pro.getpImg() %>" alt=""></li>
 						</ul>
 					</div>
 					<div class="txt">
-						<div class="name">제주 리유저블 콜드컵 세트 709ml (3p)</div>
+						<div class="name"><%=pro.getpName() %></div>
 						<div class="sub_name">Jeju reusable cold cup set 709ml (3p)</div>
-						<p>[제주 지역 스타벅스 한정 판매 상품]<br>제주의 해변과 해녀를 710ml 컵에 담은 3종 세트 상품입니다.<br>*찬 음료 전용</p>
+						<p><%=pro.getpComment() %></p>
 
 						<div class="btns">
 							<div class="tags">
-								<a href="#">#한정</a>
-								<a href="#">#리유저블</a>
-								<a href="#">#콜드컵</a>
-								<a href="#">#식기세척기금지</a>
+								<a href="#"><%=pro.getPtag() %></a>
+								
 							</div>
 							<div class="buttons">
 								<button class="button is-light">좋아요</button>

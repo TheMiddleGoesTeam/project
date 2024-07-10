@@ -43,7 +43,7 @@
                             <a href="#" class="button is-medium is-fullwidth is-success is-outlined">종류별로 보기</a>
                         </div>
                     </div>
-                    <div class="sub_category brand">
+                    <%-- <div class="sub_category brand">
                         <button type="button" class="button is-success">스타벅스</button>
                         <button type="button" class="button">할리스</button>
                         <button type="button" class="button">투썸플레이스</button>
@@ -58,8 +58,10 @@
                         <button type="button" class="button">디저트39</button>
                         <button type="button" class="button">매머드커피</button>
                         <button type="button" class="button">텐퍼센트커피</button>
-                    </div>
+                    </div> --%>
                 </div>
+                
+                <form action="buy.jsp" method="post">
                 <div class="goods_wrap">
                   
                   <%
@@ -70,11 +72,12 @@
                     <div class="goods">
                         <div class="img"><img src="<%=request.getContextPath() %>/img/<%=gift.getGiftImage() %>" alt=""></div>
                         <div class="txt">
+                        	<input type="hidden" name="giftCode" value="<%=gift.getGiftCode()%>">
                             <div class="comment"><%=gift.getGiftBrand() %></div>
                             <div class="name"><%=gift.getGiftName() %></div>
                             <div class="price"><%=gift.getGiftPrice() %> 마일리지</div>
                             <div class="buttons grid">
-                                <a href="<%=request.getContextPath() %>/gifticon/buy.jsp" class="cell is-medium button is-light">구매하기</a>
+                                <a href="addcartproc.jsp?gcode=<%=gift.getGiftCode()%>"  class="cell is-medium button is-light">구매하기</a>
                             </div>
                         </div>
                     </div>
@@ -82,6 +85,8 @@
                 	<%} %>
                 	
                 </div>
+                
+                </form>
             </div>
         </div>
     </section>

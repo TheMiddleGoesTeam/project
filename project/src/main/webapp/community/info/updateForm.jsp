@@ -72,7 +72,7 @@ try{
 								<div class="buttons is-right">
 									<input type="button" value="목록으로 돌아가기" onclick="window.location='list.jsp';" class="button is-dark">
 									<input type="reset" value="다시작성" class="button is-light">
-									<input type="submit" value="수정" class="button is-success">
+									<input type="submit" value="수정" class="button is-warning">
 								</div>
 							</td>
 						</tr>

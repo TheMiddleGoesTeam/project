@@ -51,7 +51,6 @@
         }
     }
 
-    // number = count; number = count;
     number = count - (currentPage - 1) * pageSize + 1;
 %>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/community.css">
@@ -89,7 +88,6 @@
                         </tr>
                     </thead>
                 <%
-                	System.out.println(articleList);
                     if (count == 0) { // 글이 없을 경우
                 %>
 

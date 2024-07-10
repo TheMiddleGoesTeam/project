@@ -64,16 +64,12 @@ try{
 							<th>비밀번호</th>
 							<td><input type="password" size="10" maxlength="10" name="rPass" class="input"></td>
 						</tr>
-						<tr>
-							<td colspan="2" align="center">
-								<div class="buttons is-right">
-									<input type="button" value="목록으로 돌아가기" onclick="window.location='list.jsp';" class="button is-dark">
-									<input type="reset" value="다시작성" class="button is-light">
-									<input type="submit" value="글쓰기" class="button is-success">
-								</div>
-							</td>
-						</tr>
 					</table>
+					<div class="buttons is-right">
+						<input type="button" value="목록으로 돌아가기" onclick="window.location='list.jsp';" class="button is-dark">
+						<input type="reset" value="다시작성" class="button is-light">
+						<input type="submit" value="글쓰기" class="button is-success">
+					</div>
 				</form>
 				<%
 				}catch(Exception e){e.printStackTrace();}

@@ -45,7 +45,7 @@
 					%>
 					<div class="buttons">
 						<a href="<%=request.getContextPath() %>/gifticon/all_gifticons.jsp" class="button is-warning has-text-white">기프티콘샵</a>
-						<a href="<%=request.getContextPath() %>/admin/main.jsp" class="button is-link">Admin</a>
+						<a href="<%=request.getContextPath() %>/admin/brand.jsp" class="button is-link">Admin</a>
 						<a href="<%=request.getContextPath() %>/common/logout.jsp" class="button is-light">Logout</a>
 					</div>
 					<%

@@ -80,7 +80,7 @@
 
 		<article class="gifticon">
 			<div class="inner">
-				<a href="#"><img src="<%=request.getContextPath() %>/img/gifticon_bn.png" alt="기프티콘 구매 페이지 이동"></a>
+				<a href="<%=request.getContextPath() %>/gifticon/all_gifticons.jsp"><img src="<%=request.getContextPath() %>/img/gifticon_bn.png" alt="기프티콘 구매 페이지 이동"></a>
 			</div>
 		</article>
 
@@ -103,20 +103,20 @@
 			</div>
 			<div class="swiper thx">
 				<div class="swiper-wrapper">
-					<div class="swiper-slide"><a href="#" target="_blank"><img src="<%=request.getContextPath() %>/img/logo01.png" alt="스타벅스"></a></div>
-					<div class="swiper-slide"><a href="#" target="_blank"><img src="<%=request.getContextPath() %>/img/logo02.png" alt="할리스커피"></a></div>
-					<div class="swiper-slide"><a href="#" target="_blank"><img src="<%=request.getContextPath() %>/img/logo03.png" alt="이디야"></a></div>
-					<div class="swiper-slide"><a href="#" target="_blank"><img src="<%=request.getContextPath() %>/img/logo04.png" alt="블루보틀"></a></div>
-					<div class="swiper-slide"><a href="#" target="_blank"><img src="<%=request.getContextPath() %>/img/logo05.png" alt="투썸플레이스"></a></div>
-					<div class="swiper-slide"><a href="#" target="_blank"><img src="<%=request.getContextPath() %>/img/logo06.png" alt="메가커피"></a></div>
-					<div class="swiper-slide"><a href="#" target="_blank"><img src="<%=request.getContextPath() %>/img/logo07.png" alt="파스쿠찌"></a></div>
-					<div class="swiper-slide"><a href="#" target="_blank"><img src="<%=request.getContextPath() %>/img/logo08.png" alt="폴바셋"></a></div>
-					<div class="swiper-slide"><a href="#" target="_blank"><img src="<%=request.getContextPath() %>/img/logo09.png" alt="컴포즈커피"></a></div>
+					<div class="swiper-slide"><a href="https://www.starbucks.co.kr/index.do" target="_blank"><img src="<%=request.getContextPath() %>/img/logo01.png" alt="스타벅스"></a></div>
+					<div class="swiper-slide"><a href="https://www.hollys.co.kr/" target="_blank"><img src="<%=request.getContextPath() %>/img/logo02.png" alt="할리스커피"></a></div>
+					<div class="swiper-slide"><a href="https://www.ediya.com/" target="_blank"><img src="<%=request.getContextPath() %>/img/logo03.png" alt="이디야"></a></div>
+					<div class="swiper-slide"><a href="https://www.bluebottlecoffeekorea.com/" target="_blank"><img src="<%=request.getContextPath() %>/img/logo04.png" alt="블루보틀"></a></div>
+					<div class="swiper-slide"><a href="https://www.twosome.co.kr/main.do" target="_blank"><img src="<%=request.getContextPath() %>/img/logo05.png" alt="투썸플레이스"></a></div>
+					<div class="swiper-slide"><a href="https://www.mega-mgccoffee.com/" target="_blank"><img src="<%=request.getContextPath() %>/img/logo06.png" alt="메가커피"></a></div>
+					<div class="swiper-slide"><a href="https://www.caffe-pascucci.co.kr/" target="_blank"><img src="<%=request.getContextPath() %>/img/logo07.png" alt="파스쿠찌"></a></div>
+					<div class="swiper-slide"><a href="https://www.baristapaulbassett.co.kr/Index.pb" target="_blank"><img src="<%=request.getContextPath() %>/img/logo08.png" alt="폴바셋"></a></div>
+					<%-- <div class="swiper-slide"><a href="#" target="_blank"><img src="<%=request.getContextPath() %>/img/logo09.png" alt="컴포즈커피"></a></div>
 					<div class="swiper-slide"><a href="#" target="_blank"><img src="<%=request.getContextPath() %>/img/logo10.png" alt="요거프레소"></a></div>
 					<div class="swiper-slide"><a href="#" target="_blank"><img src="<%=request.getContextPath() %>/img/logo11.png" alt="엔젤리너스"></a></div>
 					<div class="swiper-slide"><a href="#" target="_blank"><img src="<%=request.getContextPath() %>/img/logo12.png" alt="디저트39"></a></div>
 					<div class="swiper-slide"><a href="#" target="_blank"><img src="<%=request.getContextPath() %>/img/logo13.png" alt="매머드커피"></a></div>
-					<div class="swiper-slide"><a href="#" target="_blank"><img src="<%=request.getContextPath() %>/img/logo14.png" alt="텐퍼센트커피"></a></div>
+					<div class="swiper-slide"><a href="#" target="_blank"><img src="<%=request.getContextPath() %>/img/logo14.png" alt="텐퍼센트커피"></a></div> --%>
 				</div>
 				<!-- <div class="swiper-inner">
 					<div class="swiper-button-prev"></div>

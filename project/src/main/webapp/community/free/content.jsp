@@ -73,7 +73,7 @@
 						</tr>
 					</table>
 					<div class="buttons is-right">
-						<input type="button" value="목록으로 돌아가기" onclick="document.location.href='list.jsp?num=<%=article.getfNum()%>&pageNum=<%= pageNum %>'" class="button is-dark">
+						<input type="button" value="목록으로 돌아가기" onclick="document.location.href='list.jsp?num=<%=article.getfNum()%>&pageNum=1'" class="button is-dark">
 						<input type="button" value="수정" onclick="document.location.href='updateForm.jsp?num=<%=article.getfNum()%>&pageNum=<%= pageNum %>'" class="button is-warning">
 						<input type="button" value="삭제" onclick="document.location.href='deleteForm.jsp?num=<%=article.getfNum()%>&pageNum=<%= pageNum %>'" class="button is-danger">
 					</div>

@@ -27,13 +27,13 @@
 				<table class="table is-fullwidth">
 					<tr>
 						<th>아이디</th>
-						<td><p name="mID" class="input is-inline"><%=loginID %></p></td>
+						<td><p name="mID" class="input"><%=loginID %></p></td>
 					</tr>
 					
 					<tr>
 						<th>비밀번호</th>
 						<td><input type="password" name="mPass"
-							class="input is-inline"></td>
+							class="input"></td>
 					</tr>
 					
 					<tr>

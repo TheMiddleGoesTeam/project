@@ -1,6 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ include file="/include/document.jsp" %>
+
+
+<%@ include file="/include/document.jsp" %>
+<%@ page import="java.util.*" %>
+<%@ page import="com.vo.ProductVO" %>
+<%@ page import="com.dao.ProductDAO" %>
+
+<%
+	List<ProductVO> productList=null;
+	ProductDAO getgift = ProductDAO.getInstance();
+	productList= getgift. getproduct();
+
+%>
+
+
+
+
+
+
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/product.css">
 </head>
 <body>
@@ -30,7 +49,7 @@
 							<a href="#" class="button is-medium is-fullwidth is-success is-outlined">종류별로 보기</a>
 						</div>
 					</div>
-					<div class="sub_category brand">
+					<%-- <div class="sub_category brand">
 						<button type="button" class="button is-success">스타벅스</button>
 						<button type="button" class="button">할리스</button>
 						<button type="button" class="button">투썸플레이스</button>
@@ -45,63 +64,30 @@
 						<button type="button" class="button">디저트39</button>
 						<button type="button" class="button">매머드커피</button>
 						<button type="button" class="button">텐퍼센트커피</button>
-					</div>
+					</div> --%>
 				</div>
+				
+				
+				
 				<div class="goods_wrap">
+				
+				<%
+						for(int i =0; i<productList.size();i++){
+							ProductVO pro = (ProductVO)productList.get(i);
+					%>
+					
 					<div class="goods">
-						<a href="<%=request.getContextPath() %>/product/details.jsp">
-							<div class="img"><img src="<%=request.getContextPath() %>/img/starbucks_01.jpg" alt=""></div>
+						<a href="<%=request.getContextPath() %>/product/details.jsp?proCode=<%=pro.getpCode()%>">
+							<div class="img"><img src="<%=request.getContextPath() %>/img/<%=pro.getpImg() %>" alt=""></div>
 							<div class="txt">
-								<div class="comment">스타벅스</div>
-								<div class="name">제주 리유저블 콜드컵 세트 709ml 3p 세트</div>
+								<div class="comment"><%=pro.getpBrand() %></div>
+								<div class="name"><%=pro.getpName()%></div>
 							</div>
 						</a>
 					</div>
-					<div class="goods">
-						<a href="#">
-							<div class="img"><img src="<%=request.getContextPath() %>/img/starbucks_02.jpg" alt=""></div>
-							<div class="txt">
-								<div class="comment">스타벅스</div>
-								<div class="name">그린 워드마크 폼 콜드컵 473ml</div>
-							</div>
-						</a>
-					</div>
-					<div class="goods">
-						<a href="#">
-							<div class="img"><img src="<%=request.getContextPath() %>/img/starbucks_03.jpg" alt=""></div>
-							<div class="txt">
-								<div class="comment">스타벅스</div>
-								<div class="name">SS 블랙 탱크 텀블러 503ml</div>
-							</div>
-						</a>
-					</div>
-					<div class="goods">
-						<a href="#">
-							<div class="img"><img src="<%=request.getContextPath() %>/img/hollys_01.png" alt=""></div>
-							<div class="txt">
-								<div class="comment">할리스</div>
-								<div class="name">봉주르 파리 콜드컵(하트)</div>
-							</div>
-						</a>
-					</div>
-					<div class="goods">
-						<a href="#">
-							<div class="img"><img src="<%=request.getContextPath() %>/img/hollys_02.png" alt=""></div>
-							<div class="txt">
-								<div class="comment">할리스</div>
-								<div class="name">봉주르 파리 콜드컵(에펠탑)</div>
-							</div>
-						</a>
-					</div>
-					<div class="goods">
-						<a href="#">
-							<div class="img"><img src="<%=request.getContextPath() %>/img/hollys_03.png" alt=""></div>
-							<div class="txt">
-								<div class="comment">할리스</div>
-								<div class="name">봉주르 파리 머그</div>
-							</div>
-						</a>
-					</div>
+					
+					<%} %>
+					
 
 				</div>
 			</div>

@@ -6,7 +6,7 @@ function idCheck(mID){
 		document.common.mID.focus();
 	}else{
 		url="idCheck.jsp?mID="+mID;
-		window.open(url,"post","width=300,height=150");	
+		window.open(url,"post","width=500,height=300");	
 	}
 }
 

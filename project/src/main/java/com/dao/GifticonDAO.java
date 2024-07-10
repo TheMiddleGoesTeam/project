@@ -6,9 +6,6 @@ import java.util.List;
 
 import com.connection.DBcon;
 import com.vo.GifticonVO;
-import com.vo.MemberVO;
-import com.connection.DBcon;
-
 
 public class GifticonDAO {
 	
@@ -113,6 +110,84 @@ public class GifticonDAO {
 			return getgiftList;
 		}
 	
+	
+	
+public GifticonVO getgifticonCode(String giftCode){
+		
+		Connection conn = null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		GifticonVO gvo =null;
+		
+		String sql = "select * from ACI_GIFTICON where giftCode =?";
+		
+		try {
+
+			conn= DBcon.getConnection();
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, giftCode);
+			
+			
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+						gvo = new GifticonVO();
+						gvo.setGiftCode(rs.getString("giftCode"));
+						gvo.setGiftName(rs.getString("giftName"));
+						gvo.setGiftBrand(rs.getString("giftBrand"));
+						gvo.setGiftDate(rs.getTimestamp("giftDate"));
+						gvo.setGiftPrice(rs.getInt("giftPrice"));
+						gvo.setGiftComment(rs.getString("giftComment"));
+						gvo.setGiftImage(rs.getString("giftImage"));
+						gvo.setGiftCat(rs.getString("giftCat"));
+						
+				}
+			
+			
+			}catch (SQLException s) {
+				s.printStackTrace();
+			}finally{
+				DBcon.close(rs, pstmt, conn);
+			}
+			return gvo;
+		}
+	
+	
+	public void deleteGifticon(String giftCode) {
+		
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		String sql="delete from ACI_GIFTICON where GIFTCODE=?";
+		
+		try {
+			
+			con=DBcon.getConnection();
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, giftCode);
+			
+			pstmt.executeUpdate();
+			
+		}catch(SQLException ss) {
+			ss.printStackTrace();
+		}finally {
+			DBcon.close(rs, pstmt, con);
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+
 	
 	
 	

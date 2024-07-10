@@ -118,11 +118,11 @@ public class BoardDAO {
 		
 		try {
 			conn= DBcon.getConnection();
-			String sql="select * from (select rownum rnum, bNum, bTitle, bWriter, bPass, bCat, bDate, bReadcount, bRef, bStep, bDepth, bContents "
-					+ "from (select * from ACI_BOARD order by bRef desc, step asc)) where rnum >=? and rnum <= ?";
+			String sql="select * from ACI_BOARD order by bNum desc LIMIT ?, 5";
+					
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, start);
-			pstmt.setInt(2, end);
+			
 			rs=pstmt.executeQuery();
 
 			if(rs.next()) {
@@ -356,20 +356,21 @@ public class BoardDAO {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		
+
 		List<BoardVO> articleList=null;
 		
 		try {
 			con= DBcon.getConnection();
 	
-			String sql="select * from (select rownum rnum, bNum, bWriter, bTitle , bPass, bDate, bReadcount, bRef, bStep, bDepth, bContents "
-					+ "from (select * from ACI_BOARD where "
-					+what+" like '%"+content+"%' order by bRef desc, step asc)) where rnum >=? and rnum <= ?";
+			String sql="SELECT * FROM ACI_BOARD WHERE " + what + " LIKE ? "
+			           + "ORDER BY bRef DESC, bStep ASC LIMIT ? OFFSET ?";
 			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1, start);
-			pstmt.setInt(2, end);
+			pstmt.setString(1, "%" + content + "%");
+			pstmt.setInt(2, end - start + 1);
+			pstmt.setInt(3, start);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
-				articleList = new ArrayList<BoardVO>(5);
+				articleList = new ArrayList<BoardVO>();
 				do {
 					BoardVO article = new BoardVO();
 					article.setbNum(rs.getInt("bNum"));

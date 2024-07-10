@@ -99,6 +99,10 @@
 	margin-top: 50px;
 }
 
+.community.list .search .select > select {
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
 
 /* forms */
 

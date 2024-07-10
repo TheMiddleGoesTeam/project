@@ -17,35 +17,28 @@ int check = dao.deleteMember(id, pass);
 <body>
 <%@ include file="/include/header.jsp" %>
 
+	<section class="section">
+		<div class="container">
+			<div class="box" style="text-align: center; width: 500px; margin: 50px auto;">
 	<% 
 	if(check == 1){
 		session.invalidate();
 	%>
+		<h4 class="title is-4"><%= loginID %>님의 회원 탈퇴 처리가 완료되었습니다.</h4>
 
-	<section class="section">
-		<div class="container">
-			<table class="table">
-				<tr>
-					<td colspan="3" align="center">
-						<%= loginID %>님의 회원 탈퇴 처리가 완료되었습니다.
-					</td>
-				</tr>
-				<tr>
-					<td width="100" align="center">
-						<a href="<%=request.getContextPath() %>/index.jsp" class="button is-link">메인화면</a>
-					</td>
-					<td width="100" align="center">
-						<a href="<%=request.getContextPath() %>/common/signup.jsp" class="button">회원가입</a>
-					</td>
-				</tr>
+		<div class="buttons is-center" style="justify-content: center;">
+			<a href="<%=request.getContextPath() %>/index.jsp" class="button is-light">메인화면</a>
+			<a href="<%=request.getContextPath() %>/common/signup.jsp" class="button is-success">회원가입</a>
 		</div>
-	</section>
 	<% }else { %>
 		<script type="text/javascript">
 			alert("비밀번호가 틀렸습니다.");
 			history.go(-1);
 		</script>
 	<% } %>
+			</div>
+		</div>
+	</section>
 	<%@ include file="/include/footer.jsp" %>
 </body>
 </html>

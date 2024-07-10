@@ -20,13 +20,13 @@
 			<div class="menu">
 				<div class="grid">
 					<div class="cell brand"><a href="<%=request.getContextPath() %>/admin/brand.jsp" class="button is-medium is-fullwidth is-link is-light">브랜드 관리</a></div>
-					<div class="cell product"><a href="<%=request.getContextPath() %>/admin/product.jsp" class="button is-medium is-fullwidth is-link is-light">상품 관리</a></div>
+					<div class="cell product"><a href="<%=request.getContextPath() %>/admin/product.jsp" class="button is-medium is-fullwidth is-link">상품 관리</a></div>
 					<div class="cell member"><a href="<%=request.getContextPath() %>/admin/member.jsp" class="button is-medium is-fullwidth is-link is-light">회원정보 확인</a></div>
-					<div class="cell gift"><a href="<%=request.getContextPath() %>/admin/gifticon.jsp" class="button is-medium is-fullwidth is-link">기프티콘 관리</a></div>
+					<div class="cell gift"><a href="<%=request.getContextPath() %>/admin/gifticon.jsp" class="button is-medium is-fullwidth is-link is-light">기프티콘 관리</a></div>
 				</div>
 			</div>
 			
-			<form action="gifticon_uploadProc.jsp" method="post" class="is-fullwidth" name="gifticonupdate">
+			<form action="product_uploadProc.jsp" method="post" class="is-fullwidth" name="productupdate">
 
 				<div class="inner">
 					<div class="columns is-3">
@@ -43,12 +43,12 @@
 									<span class="file-name">이미지가 없습니다.</span>
 								</label>
 							</div>
-							<input type="text" name="giftCode" class="input mb-2" placeholder="기프티콘 코드">
-							<input type="text" name="giftName" class="input mb-2" placeholder="기프티콘 이름">
-							<input type="text" name="giftBrand" class="input mb-2" placeholder="기프티콘 브랜드">
-							<input type="text" name="giftCat" class="input mb-2" placeholder="기프티콘 카테고리">
-							<input type="number" name="giftPrice" class="input mb-2" placeholder="기프티콘 가격">
-							<input type="text" name="giftComment" class="input" placeholder="기프티콘 설명">
+							<input type="text" name="pCode" class="input mb-2" placeholder="상품 코드">
+							<input type="text" name="pName" class="input mb-2" placeholder="상품 이름">
+							<input type="text" name="pBrand" class="input mb-2" placeholder="상품 브랜드">
+							<input type="text" name="pCat" class="input mb-2" placeholder="상품 카테고리">
+							<input type="number" name="pPrice" class="input mb-2" placeholder="상품 가격">
+							<input type="text" name="pComment" class="input" placeholder="상품 설명">
 							<button type="submit" class="button is-link is-fullwidth is-medium mt-3">확인</button>
 						</div>
 						<div class="column img">

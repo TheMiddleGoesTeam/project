@@ -5,161 +5,219 @@
 <%@ page import="com.dao.Board_ReviewDAO" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%!
-//한페이지에 보여줄 글 수
-int pageSize=10;
-
-SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    // 한 페이지에 보여줄 글 수
+    int pageSize = 10;
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 %>
-
 <%
-String pageNum = request.getParameter("pageNum");
+    String pageNum = request.getParameter("pageNum");
 
+    // 무엇을 검색할 지 파라미터를 가져와야함(작성자, 제목, 내용)
+    String searchWhat = request.getParameter("searchWhat");
+    // 검색 내용
+    String searchText = request.getParameter("searchText");
 
-	if(pageNum==null){
-		pageNum="1";
-	}
-	int currentPage = Integer.parseInt(pageNum);
-	int startRow=(currentPage-1)*pageSize;
-	int endRow = currentPage*pageSize;
- 	int count = 0;
-	int number=0;
+    // 파라미터를 가져와서 한글로 변환 처리
+    if (searchText != null) {
+        searchText = new String(searchText.getBytes("utf-8"), "utf-8");
+    }
 
-	List<Board_ReviewVO>articleList = null;
-	Board_ReviewDAO dbPro = Board_ReviewDAO.getInstance();
-	
-	count = dbPro.getArticleCount();
+    if (pageNum == null) {
+        pageNum = "1";
+    }
 
-	if(count>0){
-		// articleList = dbPro.getArticles();
-		articleList = dbPro.getArticles(startRow,endRow);
- 	}
-	
+    int currentPage = Integer.parseInt(pageNum);
+    int startRow = (currentPage - 1) * pageSize;
+    int endRow = currentPage * pageSize;
+    int count = 0;
+    int number = 0;
 
-	number = count; number = count;
-	// number = count-(currentPage-1)*pageSize+1;
+    List<Board_ReviewVO> articleList = null;
+    Board_ReviewDAO dbPro = Board_ReviewDAO.getInstance();
+
+    if (searchText == null) { // 검색이 아닐 경우
+        count = dbPro.getArticleCount(); // 전체글의 목록 수
+
+        if (count > 0) {
+            articleList = dbPro.getArticles(startRow, endRow);
+        }
+
+    } else { // 검색인 경우
+    	count = dbPro.getArticleCount(searchWhat, searchText);
+
+        if (count > 0) {
+            // 검색 목록이 하나라도 존재한다면 리스트 출력
+            articleList = dbPro.getArticles(searchWhat, searchText, startRow, endRow);
+        }
+    }
+
+    number = count - (currentPage - 1) * pageSize + 1;
 %>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/community.css">
 </head>
 <body>
-	<%@ include file="/include/header.jsp" %>
-	<section class="titles">
-		<div class="inner">
-			<div class="title_main">리뷰 게시판<i></i></div>
-			<div class="map_list">
-				<a href="index.jsp" class="home"><i class="fa-solid fa-house"></i></a>
-				<span class="arrow"><i class="fa-solid fa-angle-right"></i></span>
-				<a href="<%=request.getContextPath() %>/community/all_boards.jsp">community</a>
-			</div>
-		</div>
-	</section>
-	<section class="section community list">
-		<div class="container">
-			<div class="inner container-960">
-				<table class="table is-fullwidth is-hoverable">
-					<colgroup>
-						<col width="100">
-						<col width="">
-						<col width="200">
-						<col width="200">
-						<col width="100">
-					</colgroup>
-					<thead>
-						<tr>
-							<th>번호</th>
-							<th>제목</th>
-							<th>작성자</th>
-							<th>작성일</th>
-							<th>조회수</th>
-						</tr>
-					</thead>
-				<%
-					if(count==0){//글이 없을 경우
-				%>
+    <%@ include file="/include/header.jsp" %>
+    <section class="titles">
+        <div class="inner">
+            <div class="title_main">리뷰 게시판<i></i></div>
+            <div class="map_list">
+                <a href="index.jsp" class="home"><i class="fa-solid fa-house"></i></a>
+                <span class="arrow"><i class="fa-solid fa-angle-right"></i></span>
+                <a href="<%=request.getContextPath() %>/community/all_boards.jsp">community</a>
+            </div>
+        </div>
+    </section>
+    <section class="section community list">
+        <div class="container">
+            <div class="inner container-960">
+                <table class="table is-fullwidth is-hoverable">
+                    <colgroup>
+                        <col width="100">
+                        <col width="">
+                        <col width="200">
+                        <col width="200">
+                        <col width="100">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>번호</th>
+                            <th>제목</th>
+                            <th>작성자</th>
+                            <th>작성일</th>
+                            <th>조회수</th>
+                        </tr>
+                    </thead>
+                <%
+                    if (count == 0) { // 글이 없을 경우
+                %>
 
-					<tr>
-						<td colspan="5" class="none">게시판에 저장된 글이 없습니다.</td>
-					</tr>
-				</table>
+                    <tr>
+                        <td colspan="5" class="none">게시판에 저장된 글이 없습니다.</td>
+                    </tr>
+                </table>
 
-				<%}else{//글이 있을 경우%>
-				<%
-					for(int i=0;i< articleList.size();i++){
-						Board_ReviewVO article = (Board_ReviewVO)articleList.get(i);
-					%>
-					<tr>
-						<td><%=article.getrNum()%></td>
-						<td><a href="content.jsp?num=<%=article.getrNum()%>&pageNum=<%=currentPage%>">
-						<%=article.getrTitle() %></a></td>
-						<td><%=article.getrWriter()%></td>
-						<td><%=sdf.format(article.getrDate())%></td>
-						<td><%= article.getrReadCount() %></td>
-					</tr>
+                <% // 글이 없을 경우
+                    } else { // 글이 있을 경우
+                    	for (int i = 0; i < articleList.size(); i++) {
+                    		Board_ReviewVO article = (Board_ReviewVO) articleList.get(i);
+                %>
+                    <tr>
+                        <td><%=number-- %></td>
+                        <td><a href="content.jsp?num=<%=article.getrNum()%>&pageNum=<%=currentPage%>">
+                        <%=article.getrTitle() %></a></td>
+                        <td><%=article.getrWriter()%></td>
+                        <td><%=sdf.format(article.getrDate())%></td>
+                        <td><%=article.getrReadCount()%></td>
+                    </tr>
 
-				<%} %>
-		
-			</table>
-		
-			<%} %>
+                <%
+                    }
+                %>
+        
+            </table>
+        
+            <%
+                } // 글이 있을 경우
+            %>
 
-				<div class="buttons is-right">
-					<a href="writeForm.jsp" class="button is-success write">글쓰기</a>
-				</div>
-				
-				<div class="paging filed">
-					<div class="buttons has-addons is-centered">
-		
-					<%
-						if(count > 0){
-							int pageBlock=2;
-							int imsi =count% pageSize == 0 ? 0:1;
-							int pageCount = count/pageSize +imsi;
-							
-							int startPage = (int)((currentPage -1)/pageBlock)*pageBlock+1;
-							int endPage = startPage + pageBlock -1;
-							
-							if(endPage > pageCount) endPage = pageCount;
-							
-							if(startPage > pageBlock){
-					%>
-					<a href="list.jsp?pageNum=<%=startPage-pageBlock%>" class="button prev">이전</a>
-					<%}
-				 		for(int i=startPage; i<=endPage; i++){
-					%>
-						<%
-							if (i == currentPage) { // 페이징 번호가 맞다면 selected 클래스 적용
-						%>
-							<a href="list.jsp?pageNum=<%=i%>" class="button is-selected"><%=i %></a>
-						<%
-							} else {
-						%>
-							<a href="list.jsp?pageNum=<%=i%>" class="button"><%=i %></a>
-						<%
-							}
-						%>
+            <div class="buttons is-right">
+                <a href="writeForm.jsp" class="button is-success write">글쓰기</a>
+            </div>
+                
+            <%
+                if (count > 0) {
+                    int pageBlock = 2;
+                    int imsi = count % pageSize == 0 ? 0 : 1;
+                    int pageCount = count / pageSize + imsi;
 
-					<%
-						} if(endPage < pageCount){
-					%>
-						<a href="list.jsp?pageNum=<%=startPage+pageBlock%>" class="button next">다음</a>
-							
-					<%
-							}
-						}//if(count) end 
-					%>
-					</div>
-				</div>
-				
-				<div class="field has-addons has-addons-centered search">
-						<p class="control">
-							<input class="input" type="text" placeholder="검색어를 입력하세요">
-						</p>
-						<p class="control">
-							<button class="button"><i class="fa-solid fa-magnifying-glass"></i></button>
-						</p>
-					</div>
-			</div>
-		</div>
-	</section>
-	<%@ include file="/include/footer.jsp" %>
+                    int startPage = (int) ((currentPage - 1) / pageBlock) * pageBlock + 1;
+                    int endPage = startPage + pageBlock - 1;
+
+                    if (endPage > pageCount) endPage = pageCount;
+            %>
+            <div class="paging field">
+                <div class="buttons has-addons is-centered">
+                    <% if (startPage > pageBlock) { %>
+                        <%
+                            if (searchText == null) {
+                        %>
+                            <a href="list.jsp?pageNum=<%=startPage - pageBlock%>" class="button prev">이전</a>
+                        <%
+                            } else {
+                        %>
+                            <a href="list.jsp?pageNum=<%=startPage - pageBlock%>&searchText=<%=searchText%>" class="button prev">이전</a>
+                        <%
+                            }
+                        %>
+                    <% } %>
+
+                    <%
+                        for (int i = startPage; i <= endPage; i++) {
+                            if (searchText == null) {
+                                if (i == currentPage) {
+                    %>
+                                    <a href="list.jsp?pageNum=<%=i%>" class="button is-selected"><%=i %></a>
+                    <%
+                                } else {
+                    %>
+                                    <a href="list.jsp?pageNum=<%=i%>" class="button"><%=i %></a>
+                    <%
+                                }
+                            } else {
+                                if (i == currentPage) {
+                    %>
+                                    <a href="list.jsp?pageNum=<%=i%>&searchText=<%=searchText%>" class="button is-selected"><%=i %></a>
+                    <%
+                                } else {
+                    %>
+                                    <a href="list.jsp?pageNum=<%=i%>&searchText=<%=searchText%>" class="button"><%=i %></a>
+                    <%
+                                }
+                            }
+                        }
+                    %>
+
+                    <% if (endPage < pageCount) { %>
+                        <%
+                            if (searchText == null) {
+                        %>
+                            <a href="list.jsp?pageNum=<%=startPage + pageBlock%>" class="button next">다음</a>
+                        <%
+                            } else {
+                        %>
+                            <a href="list.jsp?pageNum=<%=startPage + pageBlock%>&searchText=<%=searchText%>" class="button next">다음</a>
+                        <%
+                            }
+                        %>
+                    <% } %>
+                </div>
+            </div>
+            <%
+                }
+            %>
+
+                
+                <!-- 검색창 -->
+                <form action="list.jsp">
+                    <div class="field has-addons has-addons-centered search">
+                    <span class="select">
+                        <select name="searchWhat">
+                            <option value="rWriter">작성자</option>    
+                            <option value="rTitle">제목</option>  
+                            <option value="rContents">내용</option>                          
+                        </select>
+                     </span>
+                        <p class="control">
+                            <input class="input" type="text" name="searchText" placeholder="검색어를 입력하세요">
+                        </p>
+                        <p class="control">
+                            <button class="button" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <%@ include file="/include/footer.jsp" %>
 </body>
 </html>

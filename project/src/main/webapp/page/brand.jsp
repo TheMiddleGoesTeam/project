@@ -19,7 +19,7 @@
 		<div class="inner">
 			<div class="box_list">
 				<div class="box_li">
-					<a href="#" target="_blank">
+					<a href="https://www.starbucks.co.kr/index.do" target="_blank">
 						<img src="<%=request.getContextPath() %>/img/brand01.png" alt="스타벅스">
 						<div class="hover">
 							<div class="name">스타벅스</div>
@@ -29,7 +29,7 @@
 					</a>
 				</div>
 				<div class="box_li">
-					<a href="#" target="_blank">
+					<a href="https://www.hollys.co.kr/" target="_blank">
 						<img src="<%=request.getContextPath() %>/img/brand02.png" alt="할리스커피">
 						<div class="hover">
 							<div class="name">할리스커피</div>
@@ -39,7 +39,7 @@
 					</a>
 				</div>
 				<div class="box_li">
-					<a href="#" target="_blank">
+					<a href="https://www.twosome.co.kr/main.do" target="_blank">
 						<img src="<%=request.getContextPath() %>/img/brand03.png" alt="투썸플레이스">
 						<div class="hover">
 							<div class="name">투썸플레이스</div>
@@ -49,7 +49,7 @@
 					</a>
 				</div>
 				<div class="box_li">
-					<a href="#" target="_blank">
+					<a href="https://www.ediya.com/" target="_blank">
 						<img src="<%=request.getContextPath() %>/img/brand04.png" alt="이디야커피">
 						<div class="hover">
 							<div class="name">이디야커피</div>
@@ -59,7 +59,7 @@
 					</a>
 				</div>
 				<div class="box_li">
-					<a href="#" target="_blank">
+					<a href="https://www.bluebottlecoffeekorea.com/" target="_blank">
 						<img src="<%=request.getContextPath() %>/img/brand05.png" alt="블루보틀">
 						<div class="hover">
 							<div class="name">블루보틀</div>
@@ -69,7 +69,7 @@
 					</a>
 				</div>
 				<div class="box_li">
-					<a href="#" target="_blank">
+					<a href="https://www.mega-mgccoffee.com/" target="_blank">
 						<img src="<%=request.getContextPath() %>/img/brand06.png" alt="메가커피">
 						<div class="hover">
 							<div class="name">메가커피</div>
@@ -79,7 +79,7 @@
 					</a>
 				</div>
 				<div class="box_li">
-					<a href="#" target="_blank">
+					<a href="https://www.caffe-pascucci.co.kr/" target="_blank">
 						<img src="<%=request.getContextPath() %>/img/brand07.png" alt="파스쿠찌">
 						<div class="hover">
 							<div class="name">파스쿠찌</div>
@@ -89,7 +89,7 @@
 					</a>
 				</div>
 				<div class="box_li">
-					<a href="#" target="_blank">
+					<a href="https://www.baristapaulbassett.co.kr/Index.pb" target="_blank">
 						<img src="<%=request.getContextPath() %>/img/brand08.png" alt="폴 바셋">
 						<div class="hover">
 							<div class="name">폴 바셋</div>

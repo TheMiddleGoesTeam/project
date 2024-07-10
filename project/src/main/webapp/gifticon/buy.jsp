@@ -2,6 +2,25 @@
 
 <%@ include file="/include/document.jsp" %>
 
+    <%@ page import="com.dao.GifticonDAO" %>
+    <%@ page import="com.vo.GifticonVO" %>
+     <%@ page import="java.util.*" %>
+     
+     
+     
+    
+    <%
+    List<GifticonVO> cart = (List<GifticonVO>) session.getAttribute("cart");
+    if (cart == null) {
+        cart = new ArrayList<>();
+        session.setAttribute("cart", cart);
+    }
+    
+    
+    
+    %>
+
+
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/gifticon.css">
 </head>
 <body>
@@ -22,6 +41,7 @@
 				<table class="table is-fullwidth">
 					<thead>
 						<tr>
+							<th>주문번호</th>
 							<th></th>
 							<th>코드</th>
 							<th>브랜드</th>
@@ -32,50 +52,61 @@
 						</tr>
 					</thead>
 					<tbody>
+					
+					 <%  if(cart.isEmpty()){ %>
+					 <tr>
+					 	<td colspan="8">	상품이 없습니다	</td>
+					 </tr>
+					 <% }
+					 	int total_price=0;
+					 	for (int i = 0; i < cart.size(); i++) {
+						    GifticonVO item = cart.get(i);
+					 %>
+					
 						<tr>
-							<td class="img"><img src="<%=request.getContextPath() %>/img/gifticon_Signature_Chocolate.jpg" alt=""></td>
-							<td>0003</td>
-							<td>스타벅스</td>
-							<td>시그니처 초콜릿</td>
-							<td class="price">3000 마일리지</td>
+							<td><%= i+1 %></td>
+							<td class="img"><img src="<%=request.getContextPath() %>/img/<%= item.getGiftImage() %>" alt=""></td>
+							<td><%= item.getGiftCode() %></td>
+							<td><%= item.getGiftBrand() %></td>
+							<td><%= item.getGiftName() %></td>
+							<td class="price"><%= item.getGiftPrice() %> 마일리지</td>
 							<td>1</td>
 							<td>
-								<button type="button"><i class="fa-solid fa-trash"></i></button>
+								  <a href="removecartproc.jsp?delete=<%=i%>"><i class="fa-solid fa-trash"></i></a> 
 							</td>
 						</tr>
-						<tr>
-							<td class="img"><img src="<%=request.getContextPath() %>/img/gifticon_Signature_Chocolate.jpg" alt=""></td>
-							<td>0003</td>
-							<td>스타벅스</td>
-							<td>시그니처 초콜릿</td>
-							<td class="price">3000 마일리지</td>
-							<td>1</td>
-							<td>
-								<button type="button"><i class="fa-solid fa-trash"></i></button>	
-							</td>
-						</tr>
-						<tr>
-							<td class="img"><img src="<%=request.getContextPath() %>/img/gifticon_Signature_Chocolate.jpg" alt=""></td>
-							<td>0003</td>
-							<td>스타벅스</td>
-							<td>시그니처 초콜릿</td>
-							<td class="price">3000 마일리지</td>
-							<td>2</td>
-							<td>
-								<button type="button"><i class="fa-solid fa-trash"></i></button>	
-							</td>
-						</tr>
+						
+					<%
+						total_price = total_price + item.getGiftPrice();
+					 	} %>
+						
 					</tbody>
 				</table>
+				
+				 <a href="all_gifticons.jsp"  class="cell is-medium button is-light">돌아가기</a>
 			</div>
+			
+			<%
+			 Map<String, Integer> countMap = new HashMap<>();
+			
+			for (GifticonVO gifticon : cart) {
+	            String giftname = gifticon.getGiftName();
+	            countMap.put(giftname, countMap.getOrDefault(giftname, 0) + 1);
+	        }
+
+	     %>
+			
+			
+			
 			<div class="total box">
 				<div class="pp">
-					<p>시그니처 초콜릿</p>
-					<p>시그니처 초콜릿</p>
-					<p>시그니처 초콜릿 2개</p>
+					<% for (Map.Entry<String, Integer> entry : countMap.entrySet()) {%>
+			           <p> <%=  entry.getKey()%> <%= entry.getValue() %> 개 </p>
+			        
+			        <%}%>
 				</div>
-				<div class="tt">total : 9,000 마일리지</div>
-				<button type="button" class="button is-success is-large is-fullwidth">구매하기</button>
+				<div class="tt">total : <%=total_price %> 마일리지</div>
+				<a href="buyproc.jsp"class="button is-success is-large is-fullwidth">구매하기</a>
 			</div>
 		</div>
 	</section>

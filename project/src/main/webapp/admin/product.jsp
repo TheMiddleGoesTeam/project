@@ -2,13 +2,13 @@
 
 <%@ include file="/include/document.jsp" %>
 <%@ page import="java.util.*" %>
-<%@ page import="com.vo.GifticonVO" %>
-<%@ page import="com.dao.GifticonDAO" %>
+<%@ page import="com.vo.ProductVO" %>
+<%@ page import="com.dao.ProductDAO" %>
 
 <%
-	List<GifticonVO> getgiftList=null;
-	GifticonDAO getgift = GifticonDAO.getInstance();
-	getgiftList= getgift. getgifticon();
+	List<ProductVO> getproductList=null;
+	ProductDAO getpro = ProductDAO.getInstance();
+	getproductList= getpro.getproduct();
 
 %>
 
@@ -34,44 +34,42 @@
 			<div class="menu">
 				<div class="grid">
 					<div class="cell brand"><a href="<%=request.getContextPath() %>/admin/brand.jsp" class="button is-medium is-fullwidth is-link is-light">브랜드 관리</a></div>
-					<div class="cell product"><a href="<%=request.getContextPath() %>/admin/product.jsp" class="button is-medium is-fullwidth is-link is-light">상품 관리</a></div>
+					<div class="cell product"><a href="<%=request.getContextPath() %>/admin/product.jsp"" class="button is-medium is-fullwidth is-link">상품 관리</a></div>
 					<div class="cell member"><a href="<%=request.getContextPath() %>/admin/member.jsp" class="button is-medium is-fullwidth is-link is-light">회원정보 확인</a></div>
-					<div class="cell gift"><a href="<%=request.getContextPath() %>/admin/gifticon.jsp" class="button is-medium is-fullwidth is-link">기프티콘 관리</a></div>
+					<div class="cell gift"><a href="<%=request.getContextPath() %>/admin/gifticon.jsp" class="button is-medium is-fullwidth is-link is-light">기프티콘 관리</a></div>
 				</div>
 			</div>
 			<div class="inner">
 				<div class="buttons is-right">
-					<a href="<%=request.getContextPath() %>/admin/gifticon_upload.jsp" class="button is-link is-dark"><i class="fa-solid fa-plus"></i>기프티콘 추가</a>
+					<a href="<%=request.getContextPath() %>/admin/product_upload.jsp" class="button is-link is-dark"><i class="fa-solid fa-plus"></i>상품 추가</a>
 				</div>
 				<table class="table is-bordered is-striped is-fullwidth">
 					<thead>
 						<tr>
-							<th>기프티콘 코드</th>
+							<th>상품 코드</th>
 							<th>상품명</th>
 							<th>브랜드</th>
 							<th>카테고리</th>
 							<th>이미지</th>
-							<th>가격</th>
 							<th>기타</th>
 						</tr>
 					</thead>
 					<tbody>
 					<%
-						for(int i =0; i<getgiftList.size();i++){
-							GifticonVO gift = (GifticonVO)getgiftList.get(i);
+					for(int i =0; i<getproductList.size();i++){
+							ProductVO pro = (ProductVO)getproductList.get(i);
 					%>
 					
 						<tr>
-							<td rowspan='2'><%=gift.getGiftCode() %></td>
-							<td><%=gift.getGiftName() %></td>
-							<td><%=gift.getGiftBrand() %></td>
-							<td><%=gift.getGiftCat() %></td>
-							<td><img src="<%=request.getContextPath() %>/img/<%=gift.getGiftImage() %>" width="200" height="200" alt=""></td>
-							<td><%=gift.getGiftPrice() %> 마일리지</td>
-							<td><a href="gifticondeleteproc.jsp?giftcode=<%=gift.getGiftCode() %>" class="button is-small is-danger is-dark">삭제하기</a></td>
+							<td rowspan='2'><%=pro.getpCode() %></td>
+							<td><%=pro.getpName() %></td>
+							<td><%=pro.getpBrand() %></td>
+							<td><%=pro.getpCat() %></td>
+							<td><img src="<%=request.getContextPath() %>/img/<%=pro.getpImg() %>" width="200" height="200" alt=""></td>
+							<td><button type="button" class="button is-small is-danger is-dark">삭제하기</button></td>
 						</tr>
 						<tr>
-							<td colspan='6'><%=gift.getGiftComment() %></td>
+							<td colspan='6'><%=pro.getpComment() %></td>
 						</tr>
 					<%} %>
 					</tbody>
