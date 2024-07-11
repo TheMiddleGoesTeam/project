@@ -67,6 +67,7 @@ public class Board_ReviewDAO {
             pstmt.setInt(5, step);
             pstmt.setInt(6, depth);
             pstmt.setString(7,vo.getrContents());
+            pstmt.executeUpdate();
 
             
         }catch (SQLException s) {
@@ -118,7 +119,7 @@ public class Board_ReviewDAO {
         
         try {
             conn= DBcon.getConnection();
-            String sql="select * from ACI_BOARD_REVIEW order by rNum desc LIMIT ?, 5";
+            String sql="select * from ACI_BOARD_REVIEW order by rNum desc LIMIT ?, 10";
                     
             pstmt=conn.prepareStatement(sql);
             pstmt.setInt(1, start);

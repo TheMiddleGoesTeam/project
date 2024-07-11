@@ -3,7 +3,7 @@
 <%@ include file="/include/document.jsp" %>
 <%
  
-	int bNum=Integer.parseInt(request.getParameter("bNum"));
+	int bNum=Integer.parseInt(request.getParameter("num"));
 	String pageNum = request.getParameter("pageNum");
 %>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/community.css">
@@ -28,23 +28,17 @@
 	            <form action="deleteProc.jsp" method="post" name="deleteForm" onsubmit="return writeSave();">
 					<table class="table is-fullwidth">
 						<tr>
-							<td>비밀번호 입력</td>
-						</tr>
-						<tr>
+							<td style="text-align: right; vertical-align: middle;">비밀번호 입력</td>
 							<td>
-							<input type="password" size="10" maxlength="10" name="bPass" class="input">
-							 <input type="hidden" name="bNum" value="<%=bNum%>">
-							</td>
-						</tr>
-						<tr>
-							<td colspan="2" align="center">
-								<div class="buttons is-right">
-									<input type="button" value="목록으로 돌아가기" onclick="window.location='list.jsp';" class="button is-dark">
-									<input type="submit" value="글삭제" class="button is-success">
-								</div>
+								<input type="password" size="10" maxlength="10" name="bPass" class="input">
+								<input type="hidden" name="bNum" value="<%=bNum%>">
 							</td>
 						</tr>
 					</table>
+					<div class="buttons is-right">
+						<input type="button" value="목록으로 돌아가기" onclick="window.location='list.jsp';" class="button is-dark">
+						<input type="submit" value="글삭제" class="button is-success">
+					</div>
 				</form>
 	        </div>
         </div>

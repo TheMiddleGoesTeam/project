@@ -67,6 +67,7 @@ public class Board_NoticeDAO {
             pstmt.setInt(5, step);
             pstmt.setInt(6, depth);
             pstmt.setString(7,vo.getnContents());
+            pstmt.executeUpdate();
 
             
         }catch (SQLException s) {
@@ -118,7 +119,7 @@ public class Board_NoticeDAO {
         
         try {
             conn= DBcon.getConnection();
-            String sql="select * from ACI_BOARD_NOTICE order by nNum desc LIMIT ?, 5";
+            String sql="select * from ACI_BOARD_NOTICE order by nNum desc LIMIT ?, 10";
                     
             pstmt=conn.prepareStatement(sql);
             pstmt.setInt(1, start);

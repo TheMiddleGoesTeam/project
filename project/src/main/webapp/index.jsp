@@ -31,9 +31,9 @@
 				</div>
 				<div class="contain">
 					<ul>
-						<li><a href="#"><img src="<%=request.getContextPath() %>/img/best1.png" alt="베스트셀러1"></a></li>
-						<li><a href="#"><img src="<%=request.getContextPath() %>/img/best2.png" alt="베스트셀러2"></a></li>
-						<li><a href="#"><img src="<%=request.getContextPath() %>/img/best3.png" alt="베스트셀러3"></a></li>
+						<li><a href="#"><img src="<%=request.getContextPath() %>/img/starbucks_01.jpg" alt="베스트셀러1"></a></li>
+						<li><a href="#"><img src="<%=request.getContextPath() %>/img/starbucks_02.jpg" alt="베스트셀러2"></a></li>
+						<li><a href="#"><img src="<%=request.getContextPath() %>/img/starbucks_03.jpg" alt="베스트셀러3"></a></li>
 					</ul>
 				</div>
 			</div>
@@ -49,28 +49,28 @@
 				<div class="contain">
 					<div class="goods">
 						<a href="#">
-							<div class="img"><img src="" alt=""></div>
+							<div class="img"><img src="<%=request.getContextPath() %>/img/hollys_01.png" alt=""></div>
 							<div class="txt">
-								<span class="brand">투썸플레이스</span>
-								<div class="name">텀블러 500ml</div>
+								<span class="brand">할리스</span>
+								<div class="name">봉주르 파리 콜드컵(하트)</div>
 							</div>
 						</a>
 					</div>
 					<div class="goods">
 						<a href="#">
-							<div class="img"><img src="" alt=""></div>
+							<div class="img"><img src="<%=request.getContextPath() %>/img/hollys_02.png" alt=""></div>
 							<div class="txt">
-								<span class="brand">스타벅스</span>
-								<div class="name">텀블러 500ml</div>
+								<span class="brand">할리스</span>
+								<div class="name">봉주르 파리 콜드컵(에펠탑)</div>
 							</div>
 						</a>
 					</div>
 					<div class="goods">
 						<a href="#">
-							<div class="img"><img src="" alt=""></div>
+							<div class="img"><img src="<%=request.getContextPath() %>/img/hollys_03.png" alt=""></div>
 							<div class="txt">
-								<span class="brand">투썸플레이스</span>
-								<div class="name">텀블러 500ml</div>
+								<span class="brand">할리스</span>
+								<div class="name">봉주르 파리 머그</div>
 							</div>
 						</a>
 					</div>

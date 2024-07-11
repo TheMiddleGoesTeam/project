@@ -18,7 +18,7 @@ if(check == 1){
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8" http-equiv="refresh" content="0;url=list.jsp?pageNum=<%=pageNum%>">
+<meta charset="UTF-8" http-equiv="refresh" content="0;url=list.jsp?pageNum=1">
 <title>Insert title here</title>
 </head>
 <body>

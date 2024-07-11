@@ -7,7 +7,7 @@
 <%!
     // 한 페이지에 보여줄 글 수
     int pageSize = 10;
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    SimpleDateFormat sdf = new SimpleDateFormat("yy.MM.dd HH:mm");
 %>
 <%
     String pageNum = request.getParameter("pageNum");
@@ -72,11 +72,11 @@
             <div class="inner container-960">
                 <table class="table is-fullwidth is-hoverable">
                     <colgroup>
-                        <col width="100">
+                        <col width="60">
                         <col width="">
-                        <col width="200">
-                        <col width="200">
-                        <col width="100">
+                        <col width="120">
+                        <col width="130">
+                        <col width="70">
                     </colgroup>
                     <thead>
                         <tr>
@@ -102,7 +102,7 @@
                     		BoardVO article = (BoardVO) articleList.get(i);
                 %>
                     <tr>
-                        <td><%=number-- %></td>
+                        <td><%=article.getbNum()%></td>
                         <td><a href="content.jsp?num=<%=article.getbNum()%>&pageNum=<%=currentPage%>">
                         <%=article.getbTitle() %></a></td>
                         <td><%=article.getbWriter()%></td>

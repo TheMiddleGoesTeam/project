@@ -72,9 +72,9 @@
             <div class="inner container-960">
                 <table class="table is-fullwidth is-hoverable">
                     <colgroup>
-                        <col width="100">
+                        <col width="70">
                         <col width="">
-                        <col width="200">
+                        <col width="150">
                         <col width="200">
                         <col width="100">
                     </colgroup>
@@ -102,7 +102,7 @@
                     		Board_NoticeVO article = (Board_NoticeVO) articleList.get(i);
                 %>
                     <tr>
-                        <td><%=number-- %></td>
+                        <td><%=article.getnNum()%></td>
                         <td><a href="content.jsp?num=<%=article.getnNum()%>&pageNum=<%=currentPage%>">
                         <%=article.getnTitle() %></a></td>
                         <td><%=article.getnWriter()%></td>

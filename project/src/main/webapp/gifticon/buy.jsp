@@ -55,7 +55,7 @@
 					
 					 <%  if(cart.isEmpty()){ %>
 					 <tr>
-					 	<td colspan="8">	상품이 없습니다	</td>
+					 	<td colspan="8" class="nothing">	상품이 없습니다	</td>
 					 </tr>
 					 <% }
 					 	int total_price=0;
@@ -83,7 +83,7 @@
 					</tbody>
 				</table>
 				
-				 <a href="all_gifticons.jsp"  class="cell is-medium button is-light">돌아가기</a>
+				 <a href="all_gifticons.jsp"  class="cell is-medium button is-light is-fullwidth">돌아가기</a>
 			</div>
 			
 			<%

@@ -39,11 +39,11 @@
 						<div class="big">
 							<img src="<%=request.getContextPath() %>/img/<%=pro.getpImg() %>" alt="">
 						</div>
-						<ul class="small">
+						<%-- <ul class="small">
 							<li><img src="<%=request.getContextPath() %>/img/<%=pro.getpImg() %>" alt=""></li>
 							<li><img src="<%=request.getContextPath() %>/img/<%=pro.getpImg() %>" alt=""></li>
 							<li><img src="<%=request.getContextPath() %>/img/<%=pro.getpImg() %>" alt=""></li>
-						</ul>
+						</ul> --%>
 					</div>
 					<div class="txt">
 						<div class="name"><%=pro.getpName() %></div>

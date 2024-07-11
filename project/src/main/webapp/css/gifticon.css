@@ -71,3 +71,9 @@
 .buy .total .button {
 	margin-top: 30px;
 }
+
+.buy .nothing {
+	padding: 50px 0;
+	text-align: center;
+	font-size: 1.2;
+}
